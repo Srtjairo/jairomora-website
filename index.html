@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jairo Mora</title>
+  <meta name="description" content="Jairo Mora — portfolio, projects, and updates." />
+  <meta property="og:title" content="Jairo Mora" />
+  <meta property="og:description" content="Portfolio, projects, and updates." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+
+  <!-- Set theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="nav__brand" data-name></a>
+      <nav aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="#now">Now</a></li>
+          <li><a href="#updates">Updates</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero container">
+      <img class="hero__photo" id="headshot" alt="Headshot" width="200" height="200" />
+      <div class="hero__text">
+        <p class="eyebrow">Hi, I'm</p>
+        <h1 class="hero__name" data-name></h1>
+        <p class="hero__tagline" id="tagline"></p>
+        <p class="hero__bio" id="bio"></p>
+        <div class="socials" id="heroSocials"></div>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section class="section container reveal" id="now">
+      <div class="section__head">
+        <h2>Currently working on</h2>
+        <p class="section__sub">What I'm building and learning right now.</p>
+      </div>
+      <div class="now-grid" id="nowGrid"></div>
+    </section>
+
+    <!-- UPDATES / BLOG -->
+    <section class="section container reveal" id="updates">
+      <div class="section__head">
+        <h2>Updates</h2>
+        <p class="section__sub">Achievements, milestones, and what I've been up to.</p>
+      </div>
+      <div class="filters" id="postFilters" role="toolbar" aria-label="Filter updates"></div>
+      <ol class="timeline" id="postList"></ol>
+      <button class="btn btn--ghost" id="showMore" hidden>Show more</button>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section container reveal" id="projects">
+      <div class="section__head section__head--row">
+        <div>
+          <h2>Projects</h2>
+          <p class="section__sub">Selected work — click through to the code.</p>
+        </div>
+        <div class="carousel__controls">
+          <button class="icon-btn" id="prevSlide" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="icon-btn" id="nextSlide" aria-label="Next project">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Projects">
+        <div class="carousel__track" id="track"></div>
+      </div>
+      <div class="carousel__dots" id="dots"></div>
+    </section>
+  </main>
+
+  <!-- CONTACT -->
+  <footer class="footer" id="contact">
+    <div class="container footer__inner reveal">
+      <h2>Let's connect</h2>
+      <p class="section__sub">Open to opportunities, collaborations, and a good conversation.</p>
+      <a class="btn btn--primary" id="emailBtn" href="#">Say hello</a>
+      <div class="socials socials--center" id="footerSocials"></div>
+      <p class="footer__copy">© <span id="year"></span> <span data-name></span></p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

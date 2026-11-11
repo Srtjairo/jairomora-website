@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#155e75"/></linearGradient></defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <g fill="#fff" opacity=".14">
+    <rect x="120" y="640" width="110" height="360"/><rect x="250" y="560" width="90" height="440"/><rect x="360" y="700" width="120" height="300"/>
+    <rect x="500" y="380" width="100" height="620"/><rect x="540" y="300" width="20" height="80"/>
+    <rect x="620" y="600" width="130" height="400"/><rect x="770" y="480" width="90" height="520"/>
+    <rect x="880" y="220" width="130" height="780"/><rect x="905" y="140" width="10" height="80"/><rect x="975" y="140" width="10" height="80"/>
+    <rect x="1030" y="560" width="110" height="440"/><rect x="1160" y="420" width="100" height="580"/><rect x="1280" y="660" width="140" height="340"/><rect x="1440" y="590" width="100" height="410"/>
+  </g>
+  <text x="800" y="520" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="800" fill="#fff" text-anchor="middle">3D Chicago Model</text>
+  <text x="800" y="600" font-family="Inter, Arial, sans-serif" font-size="34" fill="#fff" opacity=".8" text-anchor="middle">Replace with a render</text>
+</svg>
