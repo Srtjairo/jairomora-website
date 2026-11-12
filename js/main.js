@@ -228,6 +228,20 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
+    // Progress bar fallback for browsers without CSS scroll timelines
+    var bar = $(".scroll-progress");
+    if (bar && !(window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()"))) {
+      var ticking = false;
+      var paint = function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ")";
+        ticking = false;
+      };
+      window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener("resize", paint);
+      paint();
+    }
+
     if (!("IntersectionObserver" in window)) {
       document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
       return;

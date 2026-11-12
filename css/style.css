@@ -218,11 +218,35 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 .section__head--row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
 
 /* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.is-visible { opacity: 1; transform: none; }
+/* Children of a .reveal block rise in turn (heading, then content). Only hidden when JS runs. */
+.js .reveal > *,
+.js .reveal .now-grid > * {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+}
+.js .reveal.is-visible > *,
+.js .reveal.is-visible .now-grid > * { opacity: 1; transform: none; }
+.js .reveal > :nth-child(2) { transition-delay: 90ms; }
+.js .reveal > :nth-child(3) { transition-delay: 180ms; }
+.js .reveal > :nth-child(n+4) { transition-delay: 270ms; }
+.js .reveal .now-grid > :nth-child(1) { transition-delay: 120ms; }
+.js .reveal .now-grid > :nth-child(2) { transition-delay: 200ms; }
+.js .reveal .now-grid > :nth-child(n+3) { transition-delay: 280ms; }
+
+/* Scroll progress: a hairline gradient under the nav that fills as you scroll */
+.scroll-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--gradient-text);
+  transform: scaleX(0); transform-origin: 0 50%;
+  pointer-events: none;
+}
+@keyframes progress { to { transform: scaleX(1); } }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress { animation: progress linear both; animation-timeline: scroll(root block); }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal > *, .js .reveal .now-grid > * { opacity: 1; transform: none; transition: none; }
   * { transition-duration: 0s !important; }
 }
 
