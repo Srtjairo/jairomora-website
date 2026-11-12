@@ -69,10 +69,11 @@
   /* ---------- Now ---------- */
   function renderNow() {
     $("#nowGrid").innerHTML = (S.now || []).map(function (n) {
-      return '<article class="card now-card">' +
+      var open = n.link ? '<a class="card now-card" href="' + esc(n.link) + '"' + linkAttrs(n.link) + ">" : '<article class="card now-card">';
+      return open +
         (n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "") +
         "<h3>" + esc(n.title) + "</h3>" +
-        "<p>" + esc(n.description) + "</p></article>";
+        "<p>" + esc(n.description) + "</p>" + (n.link ? "</a>" : "</article>");
     }).join("");
   }
 
@@ -150,8 +151,9 @@
   function renderProjects() {
     $("#track").innerHTML = projects.map(function (p, i) {
       var links = "";
-      if (p.github) links += '<a class="btn btn--dark" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
-      if (p.demo) links += '<a class="btn btn--ghost" style="margin:0" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
+      // the first link is the "main" one: the whole card opens it
+      if (p.github) links += '<a class="btn btn--dark project__main" draggable="false" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
+      if (p.demo) links += '<a class="btn btn--ghost' + (p.github ? "" : " project__main") + '" draggable="false" style="margin:0" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
       return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + " of " + projects.length + '">' +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +
@@ -201,14 +203,18 @@
       if (e.key === "ArrowRight") { goTo(index + 1); e.preventDefault(); }
     });
     // Swipe
-    var startX = null, startY = null;
-    car.addEventListener("pointerdown", function (e) { startX = e.clientX; startY = e.clientY; });
+    var startX = null, startY = null, swiped = false;
+    car.addEventListener("pointerdown", function (e) { startX = e.clientX; startY = e.clientY; swiped = false; });
     car.addEventListener("pointerup", function (e) {
       if (startX === null) return;
       var dx = e.clientX - startX, dy = e.clientY - startY;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) goTo(index + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { goTo(index + (dx < 0 ? 1 : -1)); swiped = true; }
       startX = null;
     });
+    // a mouse drag that swiped the carousel must not also open the card's link
+    car.addEventListener("click", function (e) {
+      if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; }
+    }, true);
     car.addEventListener("pointercancel", function () { startX = null; });
   }
 
@@ -219,6 +225,20 @@
       document.documentElement.setAttribute("data-theme", next);
       try { localStorage.setItem("theme", next); } catch (e) {}
     });
+  }
+
+  /* ---------- Card spotlight (dark mode, mouse only) ---------- */
+  function bindSpotlight() {
+    var mq = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    if (!mq || !mq.matches) return;
+    document.documentElement.classList.add("spotlight");
+    document.addEventListener("pointermove", function (e) {
+      var card = e.target.closest && e.target.closest(".card");
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty("--x", (e.clientX - r.left) + "px");
+      card.style.setProperty("--y", (e.clientY - r.top) + "px");
+    }, { passive: true });
   }
 
   /* ---------- Scroll effects ---------- */
@@ -280,4 +300,5 @@
   bindCarousel();
   bindTheme();
   bindScroll();
+  bindSpotlight();
 })();

@@ -24,6 +24,7 @@ const SITE = {
   },
 
   // "Currently working on" cards (2-3 is ideal)
+  // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {
       title: "Capstone project",
