@@ -154,7 +154,9 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 .hero__bio { margin: 16px auto 0; max-width: 54ch; color: var(--text-on-glow); text-wrap: pretty; }
 .hero .socials { justify-content: center; }
 @media (max-width: 720px) {
-  .hero { gap: 22px; min-height: auto; padding-top: 40px; padding-bottom: 56px; }
+  /* Fill the first screen on phones too: the hero text is filled in by JS after first paint, and a
+     shorter hero let that growth shove the "Now" section down (mobile CLS 0.52). */
+  .hero { gap: 22px; min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); padding-top: 40px; padding-bottom: 56px; }
   .hero__photo { width: 152px; height: 152px; }
 }
 
