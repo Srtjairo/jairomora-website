@@ -36,6 +36,15 @@
   function renderProfile() {
     var p = S.profile;
     document.querySelectorAll("[data-name]").forEach(function (el) { el.textContent = p.name; });
+    // Hero: last word of the name gets the gradient (built with text nodes, no HTML injection)
+    var h1 = $(".hero__name"), parts = String(p.name || "").trim().split(/\s+/);
+    if (h1 && parts.length > 1) {
+      var last = document.createElement("span");
+      last.className = "gradient-word";
+      last.textContent = parts.pop();
+      h1.textContent = parts.join(" ") + " ";
+      h1.appendChild(last);
+    }
     var img = $("#headshot");
     img.src = p.headshot;
     img.alt = "Headshot of " + p.name;
