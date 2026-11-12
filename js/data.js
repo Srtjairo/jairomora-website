@@ -16,7 +16,7 @@ const SITE = {
     name: "Jairo Mora",
     tagline: "Student · Developer · Builder", // TODO: your one-liner
     bio: "I build things for the web and in 3D. This is where I share what I'm working on, what I've learned, and what I've shipped.", // TODO
-    headshot: "images/headshot.webp", // tighter crop of images/headshot.jpg (480x480)
+    headshot: "images/headshot.webp", // tighter crop of the original photo (kept privately in tickets/originals/headshot.jpg)
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/Srtjairo",
     linkedin: "https://www.linkedin.com/in/jairo-mor",
