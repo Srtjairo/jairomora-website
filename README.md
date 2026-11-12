@@ -20,13 +20,13 @@ Search for `TODO` to find every placeholder.
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
 - Keep images under ~500 KB each so the site stays fast (compress at squoosh.app).
 
-### Sandbox first: the `dev` branch
-Every change starts on the `dev` branch. Nothing goes live until it has been checked there.
+### Sandbox first: the local `dev` branch
+Every change starts on the `dev` branch, which lives only on this computer and is never pushed. Nothing goes live until it has been checked there.
 
 | Stage | Where | How |
 |---|---|---|
-| Edit + look locally | http://localhost:8080 | `git switch dev`, then `python -m http.server 8080` in this folder |
-| Look online / on your phone | https://dev.jairomora-website.pages.dev | `git add .` → `git commit -m "..."` → `git push origin dev` |
+| Edit + look | http://localhost:8080 (this computer only) | `git switch dev`, then `python -m http.server 8080 --bind 127.0.0.1` in this folder |
+| Save progress | local `dev` branch | `git add .` → `git commit -m "..."` (no push) |
 | Go live | https://jairomora.com | Merge `dev` into `main` and push `main` (the `/ship` command does this with checks) |
 
 ```bash
