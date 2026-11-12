@@ -16,7 +16,7 @@ const SITE = {
     name: "Jairo Mora",
     tagline: "Student · Developer · Builder", // TODO: your one-liner
     bio: "I build things for the web and in 3D. This is where I share what I'm working on, what I've learned, and what I've shipped.", // TODO
-    headshot: "images/headshot.svg", // TODO: put your photo in /images and change to "images/headshot.jpg"
+    headshot: "images/headshot.webp", // tighter crop of the original photo (kept privately in tickets/originals/headshot.jpg)
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/Srtjairo",
     linkedin: "https://www.linkedin.com/in/jairo-mor",
@@ -89,11 +89,11 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "TODO: what part of Chicago, how it was built, and what tools you used.",
-      thumbnail: "images/projects/chicago-3d.svg",
-      tags: ["3D", "TODO"],
+      description: "An interactive 3D model of downtown Chicago that runs in the browser. Built with Three.js from public city data: 3,678 real building footprints and heights from Cook County GIS, plus the street grid and Lake Shore Drive. A guided tour flies through seven landmarks, from Willis Tower to Navy Pier.", // DRAFT from the repo notes - Jairo to confirm
+      thumbnail: "images/projects/chicago-3d.webp",
+      tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
-      demo: ""
+      demo: "https://srtjairo.github.io/chicago-3d/"
     }
   ]
 };
