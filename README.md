@@ -45,4 +45,4 @@ Cloudflare Pages redeploys automatically in about a minute.
    - Build command: *(leave empty)*
    - Build output directory: `/`
 4. **Connect the domain:** your Pages project → Custom domains → add `jairomora.com`, then also `www.jairomora.com`. HTTPS is automatic.
-5. **(Optional) Pro email:** Cloudflare → jairomora.com → Email → Email Routing → forward `hello@jairomora.com` to your Gmail.
+5. **(Optional) Pro email:** Cloudflare → jairomora.com → Email → Email Routing → forward `inbox@jairomora.com` to your Gmail (already set up).

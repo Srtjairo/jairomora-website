@@ -17,7 +17,7 @@ const SITE = {
     tagline: "Student · Developer · Builder", // TODO: your one-liner
     bio: "I build things for the web and in 3D. This is where I share what I'm working on, what I've learned, and what I've shipped.", // TODO
     headshot: "images/headshot.svg", // TODO: put your photo in /images and change to "images/headshot.jpg"
-    email: "hello@jairomora.com", // TODO: your email (or set up hello@jairomora.com on Cloudflare)
+    email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/YOUR-USERNAME", // TODO
     linkedin: "https://www.linkedin.com/in/YOUR-PROFILE", // TODO
     resume: "" // optional: e.g. "files/Jairo-Mora-Resume.pdf"
