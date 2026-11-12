@@ -20,16 +20,23 @@ Search for `TODO` to find every placeholder.
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
 - Keep images under ~500 KB each so the site stays fast (compress at squoosh.app).
 
-### Preview locally
-Double-click `index.html`, or in VS Code use the "Live Server" extension.
+### Sandbox first: the local `dev` branch
+Every change starts on the `dev` branch, which lives only on this computer and is never pushed. Nothing goes live until it has been checked there.
 
-### Publish an update
+| Stage | Where | How |
+|---|---|---|
+| Edit + look | http://localhost:8080 (this computer only) | `git switch dev`, then `python -m http.server 8080 --bind 127.0.0.1` in this folder |
+| Save progress | local `dev` branch | `git add .` → `git commit -m "..."` (no push) |
+| Go live | https://jairomora.com | Merge `dev` into `main` and push `main` (the `/ship` command does this with checks) |
+
 ```bash
-git add .
-git commit -m "New post"
-git push
+# release (only when the sandbox looks right)
+git switch main
+git merge dev
+git push origin main
+git switch dev
 ```
-Cloudflare Pages redeploys automatically in about a minute.
+Cloudflare Pages redeploys in about a minute. To undo a release, go to Cloudflare → the Pages project → Deployments, and roll back to the previous production deploy.
 
 ## One-time setup: GitHub + Cloudflare + jairomora.com
 

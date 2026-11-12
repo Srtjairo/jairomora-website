@@ -18,12 +18,13 @@ const SITE = {
     bio: "I build things for the web and in 3D. This is where I share what I'm working on, what I've learned, and what I've shipped.", // TODO
     headshot: "images/headshot.svg", // TODO: put your photo in /images and change to "images/headshot.jpg"
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
-    github: "https://github.com/YOUR-USERNAME", // TODO
+    github: "https://github.com/Srtjairo",
     linkedin: "https://www.linkedin.com/in/jairo-mor",
     resume: "" // optional: e.g. "files/Jairo-Mora-Resume.pdf"
   },
 
   // "Currently working on" cards (2-3 is ideal)
+  // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {
       title: "Capstone project",
@@ -75,7 +76,7 @@ const SITE = {
       description: "TODO: what the site does, who it's for, and what you built.",
       thumbnail: "images/projects/replit.svg", // TODO: screenshot, ideally 1600x1000
       tags: ["HTML", "CSS", "JavaScript"], // TODO
-      github: "https://github.com/YOUR-USERNAME/REPO", // TODO
+      github: "", // TODO: add the repo link when it is public (empty = no GitHub button)
       demo: "" // optional live link
     },
     {
@@ -83,7 +84,7 @@ const SITE = {
       description: "TODO: the problem, your solution, and your role.",
       thumbnail: "images/projects/capstone.svg",
       tags: ["TODO"],
-      github: "https://github.com/YOUR-USERNAME/REPO",
+      github: "", // TODO: add the repo link when it is public
       demo: ""
     },
     {
@@ -91,7 +92,7 @@ const SITE = {
       description: "TODO: what part of Chicago, how it was built, and what tools you used.",
       thumbnail: "images/projects/chicago-3d.svg",
       tags: ["3D", "TODO"],
-      github: "https://github.com/YOUR-USERNAME/REPO",
+      github: "https://github.com/Srtjairo/chicago-3d",
       demo: ""
     }
   ]
