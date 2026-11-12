@@ -78,6 +78,7 @@ body {
 }
 main { overflow-x: clip; } /* the hero glow reaches past the screen edge; never allow sideways scroll */
 img { max-width: 100%; display: block; }
+[hidden] { display: none !important; } /* our display rules (.btn, .filters...) would otherwise beat the browser's [hidden] */
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1, h2, h3 { line-height: 1.2; margin: 0; font-weight: var(--weight-heading); letter-spacing: var(--tracking-tight); }
@@ -228,9 +229,15 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
 }
 .js .reveal.is-visible > * { opacity: 1; transform: none; }
-.js .reveal > :nth-child(2) { transition-delay: 90ms; }
-.js .reveal > :nth-child(3) { transition-delay: 180ms; }
-.js .reveal > :nth-child(n+4) { transition-delay: 270ms; }
+.js .reveal > :nth-child(2):not(.btn) { transition-delay: 90ms; }
+.js .reveal > :nth-child(3):not(.btn) { transition-delay: 180ms; }
+.js .reveal > :nth-child(n+4):not(.btn) { transition-delay: 270ms; }
+/* Buttons directly in a reveal block ("Say hello", "Show more") rise with a one-shot animation instead,
+   so the reveal's transform/transition never override their own hover lift and press. */
+.js .reveal > .btn { transition: transform var(--dur) var(--ease-out), background var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
+.js .reveal.is-visible > .btn { transform: none; animation: rise var(--dur-reveal) var(--ease-out) 180ms backwards; }
+.js .reveal.is-visible > .btn:hover { transform: translateY(-1px); }
+.js .reveal.is-visible > .btn:active { transform: translateY(0) scale(.97); transition-duration: var(--dur-fast); }
 /* Now cards: one-shot animation (fill "backwards") so it never fights the hover transitions afterwards */
 .js .reveal .now-grid > * { opacity: 0; }
 .js .reveal.is-visible .now-grid > * { opacity: 1; animation: rise var(--dur-reveal) var(--ease-out) backwards; }
@@ -252,7 +259,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal > *, .js .reveal .now-grid > *,
-  .js .reveal.is-visible .now-grid > * { opacity: 1; transform: none; transition: none; animation: none; }
+  .js .reveal.is-visible .now-grid > *, .js .reveal.is-visible > .btn { opacity: 1; transform: none; transition: none; animation: none; }
   * { transition-duration: 0s !important; }
 }
 
