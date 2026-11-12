@@ -19,7 +19,7 @@ const SITE = {
     headshot: "images/headshot.svg", // TODO: put your photo in /images and change to "images/headshot.jpg"
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/YOUR-USERNAME", // TODO
-    linkedin: "https://www.linkedin.com/in/YOUR-PROFILE", // TODO
+    linkedin: "https://www.linkedin.com/in/jairo-mor",
     resume: "" // optional: e.g. "files/Jairo-Mora-Resume.pdf"
   },
 
