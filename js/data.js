@@ -36,8 +36,9 @@ const SITE = {
     },
     {
       title: "3D Chicago model",
-      description: "TODO: what you're modeling, the tools you're using, and what's next.",
-      status: "In progress"
+      description: "Still building it! Downtown Chicago in 3D, made from real city data with Three.js. Take the guided tour or switch it to night and watch the skyline light up.",
+      status: "In progress",
+      link: "https://srtjairo.github.io/chicago-3d/"
     },
     {
       title: "This website",
