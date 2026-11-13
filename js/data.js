@@ -27,9 +27,10 @@ const SITE = {
   // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {
-      title: "Capstone project",
-      description: "TODO: one or two sentences about what it is and where it's at.",
-      status: "In progress"
+      title: "OnDean capstone",
+      description: "Done! Five software companies, one question about AI, and a final call. Open it to flip through the slides.",
+      status: "Finished",
+      deck: "capstone" // opens the slide viewer of the project with this id
     },
     {
       title: "3D Chicago model",
@@ -72,20 +73,23 @@ const SITE = {
   // Projects slideshow
   projects: [
     {
-      title: "Replit Website",
-      description: "TODO: what the site does, who it's for, and what you built.",
-      thumbnail: "images/projects/replit.svg", // TODO: screenshot, ideally 1600x1000
-      tags: ["HTML", "CSS", "JavaScript"], // TODO
-      github: "", // TODO: add the repo link when it is public (empty = no GitHub button)
-      demo: "" // optional live link
+      title: "Company Research",
+      description: "A research tool I built on Replit for digging into public companies. Search a name or ticker and it pulls the financials straight from official SEC filings, shows exactly where every number came from, and lets you take it all with you as an Excel workbook.",
+      thumbnail: "images/projects/replit.webp",
+      tags: ["Replit", "SEC filings", "Excel"],
+      github: "", // add the repo link when it is public (empty = no GitHub button)
+      demo: "https://company-research-review.replit.app"
     },
     {
-      title: "Capstone Project",
-      description: "TODO: the problem, your solution, and your role.",
-      thumbnail: "images/projects/capstone.svg",
-      tags: ["TODO"],
-      github: "", // TODO: add the repo link when it is public
-      demo: ""
+      id: "capstone",
+      title: "OnDean Capstone: What Survives the AI Shift",
+      description: "My capstone for the OnDean Fellows Bootcamp. I wanted to know which software companies come out ahead as AI changes how people use and pay for software, so I compared Salesforce, Snowflake, CrowdStrike, Toast and HubSpot on retention, quality and AI exposure, then made my call: Snowflake.",
+      thumbnail: "images/capstone/slide-01.webp",
+      tags: ["Equity research", "Valuation", "AI"],
+      github: "",
+      demo: "",
+      // Slide viewer: images/capstone/slide-01.webp ... slide-33.webp, plus the PDF download
+      deck: { folder: "images/capstone", count: 33, pdf: "images/capstone/ondean-capstone.pdf" }
     },
     {
       title: "3D Chicago Model",
