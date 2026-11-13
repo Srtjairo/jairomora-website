@@ -176,7 +176,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 /* 404 page: no photo, so keep the text centred at every width */
 .hero.hero--center { flex-direction: column; text-align: center; min-height: 100vh; min-height: 100svh; padding-top: 0; padding-bottom: 0; }
 .hero--center .hero__bio { margin-left: auto; margin-right: auto; }
-.hero--center .btn { margin-top: 28px; }
+.hero--center .btn { margin-top: 28px; animation-fill-mode: backwards; } /* "both" would pin transform and kill the hover lift */
 
 /* Gradient word (one per heading at most) */
 .gradient-word {
