@@ -78,8 +78,10 @@
         : '<article class="card now-card">';
       return open +
         (n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "") +
-        "<h3>" + esc(n.title) + "</h3>" +
-        "<p>" + esc(n.description) + "</p></" + tag + ">";
+        (n.deck // a <button> may only hold inline content, so spans styled like the h3/p
+          ? '<span class="now-card__title">' + esc(n.title) + '</span><span class="now-card__desc">' + esc(n.description) + "</span>"
+          : "<h3>" + esc(n.title) + "</h3><p>" + esc(n.description) + "</p>") +
+        "</" + tag + ">";
     }).join("");
   }
 
@@ -233,10 +235,11 @@
   function buildDeckDialog() {
     var dlg = document.createElement("dialog");
     dlg.className = "deck";
-    dlg.setAttribute("aria-label", "Slides");
+    dlg.setAttribute("aria-labelledby", "deckTitle");
+    dlg.tabIndex = -1;
     dlg.innerHTML =
       '<div class="deck__bar">' +
-        '<p class="deck__title"></p>' +
+        '<p class="deck__title" id="deckTitle"></p>' +
         '<span class="deck__count" aria-live="polite"></span>' +
         '<a class="deck__pdf btn btn--ghost" download>' + ICONS.download + "PDF</a>" +
         '<button type="button" class="icon-btn deck__close" aria-label="Close slides">' + ICONS.close + "</button>" +
@@ -254,8 +257,12 @@
     dlg.querySelector(".deck__nav--prev").addEventListener("click", function () { showSlide(deck.i - 1); });
     dlg.querySelector(".deck__nav--next").addEventListener("click", function () { showSlide(deck.i + 1); });
     // a click on the empty area around the slide closes the viewer
+    // (only when the press also started there, so a drag on the slide that ends outside it doesn't close)
+    var downOnEmpty = false;
+    function isEmpty(t) { return t === dlg || t.classList.contains("deck__stage"); }
+    dlg.addEventListener("pointerdown", function (e) { downOnEmpty = isEmpty(e.target); });
     dlg.addEventListener("click", function (e) {
-      if (e.target === dlg || e.target.classList.contains("deck__stage")) dlg.close();
+      if (isEmpty(e.target) && downOnEmpty) dlg.close();
     });
     dlg.addEventListener("keydown", function (e) {
       if (e.target.closest && e.target.closest("a, button") && (e.key === " " || e.key === "Enter")) return;
@@ -290,8 +297,14 @@
     img.src = deckSrc(d, n);
     img.alt = deck.project.title + ", slide " + n + " of " + deck.n;
     deck.dialog.querySelector(".deck__count").textContent = n + " / " + deck.n;
-    deck.dialog.querySelector(".deck__nav--prev").disabled = n === 1;
-    deck.dialog.querySelector(".deck__nav--next").disabled = n === deck.n;
+    var prev = deck.dialog.querySelector(".deck__nav--prev"), next = deck.dialog.querySelector(".deck__nav--next");
+    // a focused button that gets disabled drops focus outside the dialog (and the arrow keys with it),
+    // so hand focus to the other arrow first
+    var active = document.activeElement;
+    var moveTo = (n === 1 && active === prev) ? next : (n === deck.n && active === next) ? prev : null;
+    prev.disabled = n === 1;
+    next.disabled = n === deck.n;
+    if (moveTo) (moveTo.disabled ? deck.dialog : moveTo).focus(); // the dialog itself is the fallback (tabindex -1)
     [n + 1, n + 2, n - 1].forEach(function (k) { if (k >= 1 && k <= deck.n) (new Image()).src = deckSrc(d, k); }); // preload neighbours
   }
 

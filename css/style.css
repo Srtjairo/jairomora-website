@@ -420,11 +420,13 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .footer__copy { margin: 40px 0 0; color: var(--text-muted); font-size: .85rem; }
 
 /* ============ Slide viewer (projects with a deck) ============ */
-button.now-card { width: 100%; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+button.now-card { display: block; width: 100%; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.now-card__title { display: block; margin-top: 14px; font-size: 1.1rem; line-height: 1.2; font-weight: var(--weight-heading); letter-spacing: -0.02em; }
+.now-card__desc { display: block; margin-top: 8px; color: var(--text-muted); font-size: .95rem; }
 .deck-open { overflow: hidden; } /* no page scroll behind the open viewer */
 .deck {
   /* the viewer is always dark, like a screen in a dimmed room, in both themes */
-  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
   background: #0a0c10; color: #eef0f3;
   display: none; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
@@ -439,6 +441,7 @@ button.now-card { width: 100%; font: inherit; color: inherit; text-align: left; 
 .deck__stage { display: grid; place-items: center; padding: 0 16px; min-height: 0; min-width: 0; }
 .deck__img {
   /* fit the slide inside the space left by the top bar (~68px) and the arrows (~76px) */
+  width: min(100%, calc((100vh - 160px) * 16 / 9));
   width: min(100%, calc((100dvh - 160px) * 16 / 9)); height: auto; aspect-ratio: 16 / 9;
   border-radius: var(--radius-sm); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .7);
   background: #12151c; user-select: none; touch-action: pan-y;

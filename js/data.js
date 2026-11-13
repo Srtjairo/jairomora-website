@@ -28,7 +28,7 @@ const SITE = {
   now: [
     {
       title: "OnDean capstone",
-      description: "Done! Five software companies, one question about AI, and a final call. Tap to flip through the slides.",
+      description: "Done! Five software companies, one question about AI, and a final call. Open it to flip through the slides.",
       status: "Finished",
       deck: "capstone" // opens the slide viewer of the project with this id
     },
