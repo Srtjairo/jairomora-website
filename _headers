@@ -1,0 +1,5 @@
+# Cloudflare Pages response headers.
+# The pages.dev address is a duplicate copy of jairomora.com - keep it out of search
+# results so Google only ranks the real domain. (jairomora.com itself stays indexable.)
+https://jairomora-website.pages.dev/*
+  X-Robots-Tag: noindex

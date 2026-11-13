@@ -12,6 +12,8 @@
  */
 
 const SITE = {
+  // If you change name, tagline, bio or links here, also update the copies in index.html
+  // (the <head> tags + Person data, and the hero text) - those are what Google reads.
   profile: {
     name: "Jairo A Mora",
     tagline: "Trader · Builder · Student",
