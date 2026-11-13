@@ -26,6 +26,8 @@ const SITE = {
   },
 
   // "Currently working on" cards (2-3 is ideal)
+  // A card whose status is "Finished", "Just launched", "Launched", "Done" or "Completed" is
+  // hidden automatically, so changing the status is all it takes to take a card off.
   // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {

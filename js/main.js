@@ -70,17 +70,26 @@
   }
 
   /* ---------- Now ---------- */
+  // Cards whose status says the work is over drop off "Currently working on" (they stay in data.js).
+  var NOW_DONE = ["finished", "just launched", "launched", "done", "complete", "completed"];
   function renderNow() {
-    $("#nowGrid").innerHTML = (S.now || []).map(function (n) {
+    var current = (S.now || []).filter(function (n) {
+      return NOW_DONE.indexOf(String(n.status || "").trim().toLowerCase()) === -1;
+    });
+    // Nothing in progress: hide the section and its menu link instead of showing an empty heading
+    $("#now").hidden = !current.length;
+    var navLink = document.querySelector('.nav__links a[href="#now"]');
+    if (navLink) navLink.parentNode.hidden = !current.length;
+    $("#nowGrid").innerHTML = current.map(function (n) {
       var tag = n.deck ? "button" : n.link ? "a" : "article";
       var open = n.deck ? '<button type="button" class="card now-card" data-deck="' + esc(n.deck) + '">'
         : n.link ? '<a class="card now-card" href="' + esc(n.link) + '"' + linkAttrs(n.link) + ">"
         : '<article class="card now-card">';
+      var pill = n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "";
       return open +
-        (n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "") +
         (n.deck // a <button> may only hold inline content, so spans styled like the h3/p
-          ? '<span class="now-card__title">' + esc(n.title) + '</span><span class="now-card__desc">' + esc(n.description) + "</span>"
-          : "<h3>" + esc(n.title) + "</h3><p>" + esc(n.description) + "</p>") +
+          ? '<span class="now-card__head"><span class="now-card__title">' + esc(n.title) + "</span>" + pill + '</span><span class="now-card__desc">' + esc(n.description) + "</span>"
+          : '<div class="now-card__head"><h3>' + esc(n.title) + "</h3>" + pill + "</div><p>" + esc(n.description) + "</p>") +
         "</" + tag + ">";
     }).join("");
   }
@@ -115,7 +124,7 @@
     var shown = list.slice(0, visibleCount);
     var ol = $("#postList");
     if (!shown.length) {
-      ol.innerHTML = '<li class="empty">No updates here yet.</li>';
+      ol.innerHTML = '<li class="empty">Nothing here yet.</li>';
     } else {
       ol.innerHTML = shown.map(function (p, i) {
         var id = "post-body-" + i;
