@@ -85,9 +85,9 @@
       <a href="#top" class="nav__brand" data-name>Jairo A Mora</a>
       <nav aria-label="Main">
         <ul class="nav__links">
-          <li><a href="#now">Now</a></li>
-          <li><a href="#updates">Updates</a></li>
+          <li><a href="#now">Working on</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#timeline">Timeline</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -116,26 +116,16 @@
     <!-- NOW -->
     <section class="section container reveal" id="now">
       <div class="section__head">
-        <h2>Currently working on. <span class="h-muted">What I'm building and learning right now.</span></h2>
+        <h2>Currently working on.</h2>
       </div>
       <div class="now-grid" id="nowGrid"></div>
-    </section>
-
-    <!-- UPDATES / BLOG -->
-    <section class="section container reveal" id="updates">
-      <div class="section__head">
-        <h2>Updates. <span class="h-muted">Achievements, milestones, and what I've been up to.</span></h2>
-      </div>
-      <div class="filters" id="postFilters" role="toolbar" aria-label="Filter updates"></div>
-      <ol class="timeline" id="postList"></ol>
-      <button class="btn btn--ghost" id="showMore" hidden>Show more</button>
     </section>
 
     <!-- PROJECTS -->
     <section class="section container reveal" id="projects">
       <div class="section__head section__head--row">
         <div>
-          <h2>Projects. <span class="h-muted">Selected work — click through to the code.</span></h2>
+          <h2>Projects. <span class="h-muted">Take a look.</span></h2>
         </div>
         <div class="carousel__controls">
           <button class="icon-btn" id="prevSlide" aria-label="Previous project">
@@ -150,6 +140,16 @@
         <div class="carousel__track" id="track"></div>
       </div>
       <div class="carousel__dots" id="dots"></div>
+    </section>
+
+    <!-- TIMELINE (updates / blog) -->
+    <section class="section container reveal" id="timeline">
+      <div class="section__head">
+        <h2>Timeline. <span class="h-muted">Achievements and milestones.</span></h2>
+      </div>
+      <div class="filters" id="postFilters" role="toolbar" aria-label="Filter timeline"></div>
+      <ol class="timeline" id="postList"></ol>
+      <button class="btn btn--ghost" id="showMore" hidden>Show more</button>
     </section>
   </main>
 
