@@ -89,7 +89,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "An interactive 3D model of downtown Chicago that runs in the browser. Built with Three.js from public city data: 3,678 real building footprints and heights from Cook County GIS, plus the street grid and Lake Shore Drive. A guided tour flies through seven landmarks, from Willis Tower to Navy Pier.", // DRAFT from the repo notes - Jairo to confirm
+      description: "I rebuilt downtown Chicago in 3D so you can explore it right in your browser. Every building comes from real city data, and you can take a guided tour past landmarks like Willis Tower and Navy Pier, or slide the time of day from noon to night and watch the skyline light up.",
       thumbnail: "images/projects/chicago-3d.webp",
       tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
