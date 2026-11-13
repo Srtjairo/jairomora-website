@@ -173,6 +173,11 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   .hero__photo { width: 240px; height: 240px; }
 }
 
+/* 404 page: no photo, so keep the text centred at every width */
+.hero.hero--center { flex-direction: column; text-align: center; min-height: 100vh; min-height: 100svh; padding-top: 0; padding-bottom: 0; }
+.hero--center .hero__bio { margin-left: auto; margin-right: auto; }
+.hero--center .btn { margin-top: 28px; }
+
 /* Gradient word (one per heading at most) */
 .gradient-word {
   background: var(--gradient-text);
@@ -350,10 +355,12 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .post__toggle {
   all: unset; cursor: pointer; display: block; width: 100%;
 }
+/* The button sits inside the h3; this layer stretches it over the whole card so any click toggles */
+.post__toggle::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .post__toggle:focus-visible { outline: none; } /* the ring is drawn on the whole .post__card */
-.post__toggle:hover .post__title { color: var(--accent); }
+.post__card:has(.post__toggle:hover) .post__title { color: var(--accent); }
 .post__summary { margin: 6px 0 0; color: var(--text-muted); }
-.post__body { margin-top: 12px; color: var(--text); }
+.post__body { position: relative; z-index: 1; margin-top: 12px; color: var(--text); } /* above the click layer: text stays selectable */
 .post__body p { margin: 0 0 12px; }
 .post__body p:last-child { margin-bottom: 0; }
 .post__more { margin-top: 10px; font-size: .88rem; font-weight: 600; color: var(--accent); }

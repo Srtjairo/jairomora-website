@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found – Jairo Mora</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+
+  <!-- Cloudflare Pages serves this page (status 404) for any address that doesn't exist.
+       Paths are absolute (/css/...) because it can be shown at any depth, e.g. /a/b/c. -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css?v=202611131236" />
+</head>
+<body>
+  <main>
+    <section class="hero hero--center container">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="hero__text">
+        <h1 class="hero__name">Page not <span class="gradient-word">found</span></h1>
+        <p class="hero__bio">That page doesn't exist. The address might have a typo, or the page may have moved.</p>
+        <a class="btn btn--primary" href="/">Back to jairomora.com</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
