@@ -128,15 +128,17 @@
     } else {
       ol.innerHTML = shown.map(function (p, i) {
         var id = "post-body-" + i;
+        // The title is a real heading; when there is a body, the heading holds the toggle button
+        // (its ::after stretches over the card, so the whole card stays clickable).
         return '<li class="post"><article class="card post__card">' +
-          '<button class="post__toggle" aria-expanded="false" aria-controls="' + id + '">' +
-            '<div class="post__meta"><time datetime="' + esc(p.date) + '">' + fmtDate(p.date) + "</time>" +
-              (p.tag ? '<span class="pill pill--muted">' + esc(p.tag) + "</span>" : "") + "</div>" +
-            '<h3 class="post__title">' + esc(p.title) + "</h3>" +
-            (p.summary ? '<p class="post__summary">' + esc(p.summary) + "</p>" : "") +
-            (p.body ? '<div class="post__more">Read more</div>' : "") +
-          "</button>" +
-          (p.body ? '<div class="post__body" id="' + id + '" hidden>' + paragraphs(p.body) + "</div>" : "") +
+          '<div class="post__meta"><time datetime="' + esc(p.date) + '">' + fmtDate(p.date) + "</time>" +
+            (p.tag ? '<span class="pill pill--muted">' + esc(p.tag) + "</span>" : "") + "</div>" +
+          '<h3 class="post__title">' + (p.body
+            ? '<button class="post__toggle" aria-expanded="false" aria-controls="' + id + '">' + esc(p.title) + "</button>"
+            : esc(p.title)) + "</h3>" +
+          (p.summary ? '<p class="post__summary">' + esc(p.summary) + "</p>" : "") +
+          (p.body ? '<div class="post__more" aria-hidden="true">Read more</div>' +
+            '<div class="post__body" id="' + id + '" hidden>' + paragraphs(p.body) + "</div>" : "") +
           "</article></li>";
       }).join("");
     }
@@ -152,7 +154,7 @@
       var open = btn.getAttribute("aria-expanded") === "true";
       btn.setAttribute("aria-expanded", String(!open));
       body.hidden = open;
-      var more = btn.querySelector(".post__more");
+      var more = btn.closest(".post__card").querySelector(".post__more");
       if (more) more.textContent = open ? "Read more" : "Show less";
     });
     $("#showMore").addEventListener("click", function () {
