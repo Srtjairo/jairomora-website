@@ -65,11 +65,11 @@ const SITE = {
   projects: [
     {
       title: "Company Research",
-      description: "A research tool I built on Replit for digging into public companies. Search a name or ticker and it pulls the financials straight from official SEC filings, shows exactly where every number came from, and lets you take it all with you as an Excel workbook.",
-      thumbnail: "images/projects/replit.webp",
-      tags: ["Replit", "SEC filings", "Excel"],
-      github: "", // add the repo link when it is public (empty = no GitHub button)
-      demo: "https://company-research-review.replit.app"
+      description: "A research tool I built for digging into public companies. Search a name or ticker and it pulls the financials straight from official SEC filings, shows exactly where every number came from, and lets you take it all with you as an Excel workbook. It all runs right in your browser.",
+      thumbnail: "images/projects/company-research.webp",
+      tags: ["SEC filings", "Excel", "JavaScript"],
+      github: "", // repo is private (empty = no GitHub button)
+      demo: "https://research.jairomora.com"
     },
     {
       id: "capstone",
