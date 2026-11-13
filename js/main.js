@@ -9,6 +9,9 @@
     linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>',
     email: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/></svg>',
     resume: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8zm0 4h8v2H8z"/></svg>',
+    slides: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-8v2h3v2H8v-2h3v-2H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 2v9h16V6H4zm6 1.5 5 3-5 3v-6z"/></svg>',
+    download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v9.2l3.3-3.3 1.4 1.4L12 16l-5.7-5.7 1.4-1.4 3.3 3.3V3zM4 18h16v2H4z"/></svg>',
+    close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/></svg>',
     external: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H5v12h12v-5h2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>'
   };
 
@@ -69,11 +72,14 @@
   /* ---------- Now ---------- */
   function renderNow() {
     $("#nowGrid").innerHTML = (S.now || []).map(function (n) {
-      var open = n.link ? '<a class="card now-card" href="' + esc(n.link) + '"' + linkAttrs(n.link) + ">" : '<article class="card now-card">';
+      var tag = n.deck ? "button" : n.link ? "a" : "article";
+      var open = n.deck ? '<button type="button" class="card now-card" data-deck="' + esc(n.deck) + '">'
+        : n.link ? '<a class="card now-card" href="' + esc(n.link) + '"' + linkAttrs(n.link) + ">"
+        : '<article class="card now-card">';
       return open +
         (n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "") +
         "<h3>" + esc(n.title) + "</h3>" +
-        "<p>" + esc(n.description) + "</p>" + (n.link ? "</a>" : "</article>");
+        "<p>" + esc(n.description) + "</p></" + tag + ">";
     }).join("");
   }
 
@@ -152,8 +158,9 @@
     $("#track").innerHTML = projects.map(function (p, i) {
       var links = "";
       // the first link is the "main" one: the whole card opens it
-      if (p.github) links += '<a class="btn btn--dark project__main" draggable="false" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
-      if (p.demo) links += '<a class="btn btn--ghost' + (p.github ? "" : " project__main") + '" draggable="false" style="margin:0" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
+      if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
+      if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" draggable="false" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
+      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" draggable="false" style="margin:0" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
       return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + " of " + projects.length + '">' +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +
@@ -186,7 +193,7 @@
     });
     document.querySelectorAll(".slide").forEach(function (s, j) {
       s.setAttribute("aria-hidden", String(j !== index));
-      s.querySelectorAll("a").forEach(function (a) { a.tabIndex = j === index ? 0 : -1; });
+      s.querySelectorAll("a, button").forEach(function (a) { a.tabIndex = j === index ? 0 : -1; });
     });
   }
 
@@ -216,6 +223,99 @@
       if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; }
     }, true);
     car.addEventListener("pointercancel", function () { startX = null; });
+  }
+
+  /* ---------- Slide viewer (projects with a `deck`) ---------- */
+  var deck = null; // { project, dialog, n, i, opener }
+
+  function deckSrc(d, n) { return d.folder + "/slide-" + (n < 10 ? "0" : "") + n + ".webp"; }
+
+  function buildDeckDialog() {
+    var dlg = document.createElement("dialog");
+    dlg.className = "deck";
+    dlg.setAttribute("aria-label", "Slides");
+    dlg.innerHTML =
+      '<div class="deck__bar">' +
+        '<p class="deck__title"></p>' +
+        '<span class="deck__count" aria-live="polite"></span>' +
+        '<a class="deck__pdf btn btn--ghost" download>' + ICONS.download + "PDF</a>" +
+        '<button type="button" class="icon-btn deck__close" aria-label="Close slides">' + ICONS.close + "</button>" +
+      "</div>" +
+      '<div class="deck__stage">' +
+        '<img class="deck__img" alt="" draggable="false">' +
+      "</div>" +
+      '<div class="deck__controls">' +
+        '<button type="button" class="icon-btn deck__nav--prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>' +
+        '<button type="button" class="icon-btn deck__nav--next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>' +
+      "</div>";
+    document.body.appendChild(dlg);
+
+    dlg.querySelector(".deck__close").addEventListener("click", function () { dlg.close(); });
+    dlg.querySelector(".deck__nav--prev").addEventListener("click", function () { showSlide(deck.i - 1); });
+    dlg.querySelector(".deck__nav--next").addEventListener("click", function () { showSlide(deck.i + 1); });
+    // a click on the empty area around the slide closes the viewer
+    dlg.addEventListener("click", function (e) {
+      if (e.target === dlg || e.target.classList.contains("deck__stage")) dlg.close();
+    });
+    dlg.addEventListener("keydown", function (e) {
+      if (e.target.closest && e.target.closest("a, button") && (e.key === " " || e.key === "Enter")) return;
+      if (e.key === "ArrowLeft") { showSlide(deck.i - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight" || e.key === " ") { showSlide(deck.i + 1); e.preventDefault(); }
+      if (e.key === "Home") { showSlide(1); e.preventDefault(); }
+      if (e.key === "End") { showSlide(deck.n); e.preventDefault(); }
+    });
+    // swipe left/right on the slide
+    var sx = null, sy = null;
+    var img = dlg.querySelector(".deck__img");
+    img.addEventListener("pointerdown", function (e) { sx = e.clientX; sy = e.clientY; });
+    img.addEventListener("pointerup", function (e) {
+      if (sx === null) return;
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) showSlide(deck.i + (dx < 0 ? 1 : -1));
+      sx = null;
+    });
+    img.addEventListener("pointercancel", function () { sx = null; });
+    dlg.addEventListener("close", function () {
+      document.documentElement.classList.remove("deck-open");
+      if (deck.opener && deck.opener.focus) deck.opener.focus();
+    });
+    return dlg;
+  }
+
+  function showSlide(n) {
+    var d = deck.project.deck;
+    n = Math.max(1, Math.min(deck.n, n));
+    deck.i = n;
+    var img = deck.dialog.querySelector(".deck__img");
+    img.src = deckSrc(d, n);
+    img.alt = deck.project.title + ", slide " + n + " of " + deck.n;
+    deck.dialog.querySelector(".deck__count").textContent = n + " / " + deck.n;
+    deck.dialog.querySelector(".deck__nav--prev").disabled = n === 1;
+    deck.dialog.querySelector(".deck__nav--next").disabled = n === deck.n;
+    [n + 1, n + 2, n - 1].forEach(function (k) { if (k >= 1 && k <= deck.n) (new Image()).src = deckSrc(d, k); }); // preload neighbours
+  }
+
+  function openDeck(id, opener) {
+    var p = projects.filter(function (x, i) { return x.deck && String(x.id || i) === String(id); })[0];
+    if (!p) return;
+    var dlg = (deck && deck.dialog) || buildDeckDialog();
+    if (!dlg.showModal) { window.open(p.deck.pdf || deckSrc(p.deck, 1), "_blank"); return; } // very old browsers
+    deck = { project: p, dialog: dlg, n: p.deck.count, i: 1, opener: opener };
+    dlg.querySelector(".deck__title").textContent = p.title;
+    var pdf = dlg.querySelector(".deck__pdf");
+    pdf.hidden = !p.deck.pdf;
+    if (p.deck.pdf) { pdf.href = p.deck.pdf; pdf.setAttribute("aria-label", "Download the slides as a PDF"); }
+    showSlide(1);
+    document.documentElement.classList.add("deck-open");
+    dlg.showModal();
+    dlg.querySelector(".deck__nav--next").focus();
+  }
+
+  function bindDecks() {
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-deck]");
+      if (b) { e.preventDefault(); openDeck(b.getAttribute("data-deck"), b); }
+    });
   }
 
   /* ---------- Theme ---------- */
@@ -298,6 +398,7 @@
   bindPosts();
   renderProjects();
   bindCarousel();
+  bindDecks();
   bindTheme();
   bindScroll();
   bindSpotlight();
