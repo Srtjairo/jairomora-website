@@ -3,11 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jairo A Mora</title>
-  <meta name="description" content="Jairo A Mora — portfolio, projects, and updates." />
-  <meta property="og:title" content="Jairo A Mora" />
-  <meta property="og:description" content="Portfolio, projects, and updates." />
-  <meta property="og:type" content="website" />
+  <title>Jairo Mora – Trader, Builder, Student</title>
+  <meta name="description" content="Jairo Mora – trader, builder and student. See my projects, including a 3D Chicago model and an equity research capstone on AI, plus updates on what I'm building." />
+  <meta name="author" content="Jairo A Mora" />
+  <link rel="canonical" href="https://jairomora.com/" />
+
+  <!-- Link previews (iMessage, LinkedIn, X, Slack...) -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Jairo Mora" />
+  <meta property="og:url" content="https://jairomora.com/" />
+  <meta property="og:title" content="Jairo Mora – Trader, Builder, Student" />
+  <meta property="og:description" content="Projects, updates and contact for Jairo A Mora." />
+  <meta property="og:image" content="https://jairomora.com/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jairo A Mora – Trader · Builder · Student – jairomora.com" />
+  <meta property="profile:first_name" content="Jairo" />
+  <meta property="profile:last_name" content="Mora" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tells Google who this page is about (keep in sync with js/data.js profile) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://jairomora.com/#person",
+        "name": "Jairo Mora",
+        "alternateName": "Jairo A Mora",
+        "givenName": "Jairo",
+        "familyName": "Mora",
+        "url": "https://jairomora.com/",
+        "image": "https://jairomora.com/images/headshot.webp",
+        "jobTitle": "Trader, Builder, Student",
+        "description": "Trader, builder and student sharing projects and updates.",
+        "sameAs": [
+          "https://www.linkedin.com/in/jairo-mor",
+          "https://github.com/Srtjairo"
+        ]
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://jairomora.com/#page",
+        "url": "https://jairomora.com/",
+        "name": "Jairo Mora – Trader, Builder, Student",
+        "mainEntity": { "@id": "https://jairomora.com/#person" }
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://jairomora.com/",
+        "name": "Jairo Mora"
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
 
   <!-- Set theme before paint to avoid a flash -->
@@ -24,14 +75,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202611130639" />
+  <link rel="stylesheet" href="css/style.css?v=202611131025" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="nav" id="top">
     <div class="container nav__inner">
-      <a href="#top" class="nav__brand" data-name></a>
+      <a href="#top" class="nav__brand" data-name>Jairo A Mora</a>
       <nav aria-label="Main">
         <ul class="nav__links">
           <li><a href="#now">Now</a></li>
@@ -52,11 +103,12 @@
     <!-- HERO -->
     <section class="hero container">
       <div class="glow" aria-hidden="true"></div>
-      <img class="hero__photo" id="headshot" alt="Headshot" width="368" height="368" />
+      <!-- Name, tagline and bio are also written here so search engines see them without running JS; js/data.js still controls what shows -->
+      <img class="hero__photo" id="headshot" src="images/headshot.webp?v=2" alt="Headshot of Jairo A Mora" width="368" height="368" />
       <div class="hero__text">
-        <h1 class="hero__name" data-name></h1>
-        <p class="hero__tagline" id="tagline"></p>
-        <p class="hero__bio" id="bio"></p>
+        <h1 class="hero__name" data-name>Jairo A <span class="gradient-word">Mora</span></h1>
+        <p class="hero__tagline" id="tagline">Trader · Builder · Student</p>
+        <p class="hero__bio" id="bio">Welcome! I've been building projects and learning a lot along the way. I hope you enjoy what I've made, and if you do, follow along to keep up with my progress.</p>
         <div class="socials" id="heroSocials"></div>
       </div>
     </section>
@@ -107,11 +159,11 @@
       <h2>Let's connect. <span class="h-muted">Open to opportunities, collaborations, and a good conversation.</span></h2>
       <a class="btn btn--primary" id="emailBtn" href="#">Say hello</a>
       <div class="socials socials--center" id="footerSocials"></div>
-      <p class="footer__copy">© <span id="year"></span> <span data-name></span></p>
+      <p class="footer__copy">© <span id="year"></span> <span data-name>Jairo A Mora</span></p>
     </div>
   </footer>
 
-  <script src="js/data.js?v=202611130639"></script>
-  <script src="js/main.js?v=202611130639"></script>
+  <script src="js/data.js?v=202611131025"></script>
+  <script src="js/main.js?v=202611131025"></script>
 </body>
 </html>

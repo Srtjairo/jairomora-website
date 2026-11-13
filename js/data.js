@@ -12,6 +12,8 @@
  */
 
 const SITE = {
+  // If you change name, tagline, bio or links here, also update the copies in index.html
+  // (the <head> tags + Person data, and the hero text) - those are what Google reads.
   profile: {
     name: "Jairo A Mora",
     tagline: "Trader · Builder · Student",
@@ -34,8 +36,9 @@ const SITE = {
     },
     {
       title: "3D Chicago model",
-      description: "TODO: what you're modeling, the tools you're using, and what's next.",
-      status: "In progress"
+      description: "Still building it! Downtown Chicago in 3D, made from real city data with Three.js. Take the guided tour or switch it to night and watch the skyline light up.",
+      status: "In progress",
+      link: "https://srtjairo.github.io/chicago-3d/"
     },
     {
       title: "This website",
