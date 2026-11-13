@@ -53,20 +53,6 @@ const SITE = {
       tag: "Project",
       summary: "My new home on the web for projects, updates, and wins.",
       body: "I built this site to keep everything I'm working on in one place - projects, milestones, and what I'm learning along the way.\n\nCheck back for updates on my capstone and the 3D Chicago model."
-    },
-    {
-      date: "2026-10-01",
-      title: "TODO: an achievement you're proud of",
-      tag: "Achievement",
-      summary: "Replace this example post with something real.",
-      body: "Write a few sentences here about what you did, why it mattered, and what you learned."
-    },
-    {
-      date: "2026-09-01",
-      title: "TODO: something you learned",
-      tag: "Learning",
-      summary: "Another example post - delete or replace.",
-      body: "Posts can be as short or long as you like."
     }
   ],
 
