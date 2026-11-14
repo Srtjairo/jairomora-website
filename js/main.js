@@ -55,7 +55,7 @@
     $("#tagline").textContent = p.tagline;
     $("#bio").textContent = p.bio || "";
     $("#year").textContent = new Date().getFullYear();
-    $("#emailBtn").href = "mailto:" + p.email;
+    if (p.email) $("#emailBtn").href = "mailto:" + p.email; // no email set: keep the address already in index.html
 
     var links = [];
     if (p.github) links.push({ url: p.github, label: "GitHub", icon: ICONS.github });
@@ -91,10 +91,15 @@
         : n.link ? '<a class="card now-card" href="' + esc(n.link) + '"' + linkAttrs(n.link) + ">"
         : '<article class="card now-card">';
       var pill = n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "";
+      // clickable cards say so: slides open in the viewer, links open the page (↗ = opens in a new tab)
+      // (arrows are aria-hidden so screen readers don't read "north east arrow"; new tabs are announced in words)
+      var ext = n.link && /^https?:/.test(n.link);
+      var hint = n.deck ? '<span class="now-card__open">View slides <span aria-hidden="true">→</span></span>'
+        : n.link ? '<span class="now-card__open">Open <span aria-hidden="true">' + (ext ? "↗" : "→") + "</span>" + (ext ? '<span class="sr-only"> (opens in a new tab)</span>' : "") + "</span>" : "";
       return open +
         (n.deck // a <button> may only hold inline content, so spans styled like the h3/p
-          ? '<span class="now-card__head"><span class="now-card__title">' + esc(n.title) + "</span>" + pill + '</span><span class="now-card__desc">' + esc(n.description) + "</span>"
-          : '<div class="now-card__head"><h3>' + esc(n.title) + "</h3>" + pill + "</div><p>" + esc(n.description) + "</p>") +
+          ? '<span class="now-card__head"><span class="now-card__title">' + esc(n.title) + "</span>" + pill + '</span><span class="now-card__desc">' + esc(n.description) + "</span>" + hint
+          : '<div class="now-card__head"><h3>' + esc(n.title) + "</h3>" + pill + "</div><p>" + esc(n.description) + "</p>" + hint) +
         "</" + tag + ">";
     }).join("");
   }

@@ -3,7 +3,6 @@
  *  THIS IS THE FILE YOU EDIT TO UPDATE YOUR WEBSITE.
  * ============================================================
  *  - Everything on the page (name, posts, projects) comes from here.
- *  - Anything marked TODO is a placeholder - replace it with the real thing.
  *  - Keep the commas between { ... } blocks!
  *
  *  To add a new update/blog post: copy one block inside `posts`,
