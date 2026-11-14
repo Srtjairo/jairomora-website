@@ -18,6 +18,7 @@ Search for `TODO` to find every placeholder.
 ### Images
 - **Headshot:** save a square photo as `images/headshot.webp` (keep the original out of `images/`). Browsers cache it, so after replacing it bump the `?v=` number on the headshot in both `index.html` and `js/data.js` (e.g. `headshot.webp?v=2` → `?v=3`).
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
+- **Resume:** save the new PDF over `files/Jairo-Mora-Resume.pdf` (same name, so the hero button keeps working). To hide the button, set `resume: ""` in `js/data.js`.
 - Keep images under ~500 KB each so the site stays fast (compress at squoosh.app).
 
 ### Sandbox first: the local `dev` branch
