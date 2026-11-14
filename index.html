@@ -75,7 +75,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202611131259" />
+  <link rel="stylesheet" href="css/style.css?v=202611131822" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -104,9 +104,9 @@
     <section class="hero container">
       <div class="glow" aria-hidden="true"></div>
       <!-- Name, tagline and bio are also written here so search engines see them without running JS; js/data.js still controls what shows -->
-      <img class="hero__photo" id="headshot" src="images/headshot.webp?v=2" alt="Headshot of Jairo A Mora" width="368" height="368" />
+      <img class="hero__photo" id="headshot" fetchpriority="high" src="images/headshot.webp?v=2" alt="Headshot of Jairo A Mora" width="368" height="368" />
       <div class="hero__text">
-        <h1 class="hero__name" data-name>Jairo A <span class="gradient-word">Mora</span></h1>
+        <h1 class="hero__name">Jairo A <span class="gradient-word">Mora</span></h1>
         <p class="hero__tagline" id="tagline">Trader · Builder · Student</p>
         <p class="hero__bio" id="bio">Welcome! I've been building projects and learning a lot along the way. I hope you enjoy what I've made, and if you do, follow along to keep up with my progress.</p>
         <div class="socials" id="heroSocials"></div>
@@ -136,7 +136,7 @@
           </button>
         </div>
       </div>
-      <div class="carousel" id="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Projects">
+      <div class="carousel" id="carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects">
         <div class="carousel__track" id="track"></div>
       </div>
       <div class="carousel__dots" id="dots"></div>
@@ -157,13 +157,13 @@
   <footer class="footer" id="contact">
     <div class="container footer__inner reveal">
       <h2>Let's connect. <span class="h-muted">Open to opportunities, collaborations, and a good conversation.</span></h2>
-      <a class="btn btn--primary" id="emailBtn" href="#">Say hello</a>
+      <a class="btn btn--primary" id="emailBtn" href="mailto:inbox@jairomora.com">Say hello</a>
       <div class="socials socials--center" id="footerSocials"></div>
       <p class="footer__copy">© <span id="year"></span> <span data-name>Jairo A Mora</span></p>
     </div>
   </footer>
 
-  <script src="js/data.js?v=202611131259"></script>
-  <script src="js/main.js?v=202611131259"></script>
+  <script src="js/data.js?v=202611131822"></script>
+  <script src="js/main.js?v=202611131822"></script>
 </body>
 </html>
