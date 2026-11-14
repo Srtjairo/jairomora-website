@@ -60,11 +60,11 @@ const SITE = {
     }
   ],
 
-  // Projects (all shown as cards)
+  // Projects (all shown as cards). Keep each description to about 150 characters so the cards stay compact.
   projects: [
     {
       title: "Company Research",
-      description: "A research tool I built for digging into public companies. Search a name or ticker and it pulls the financials straight from official SEC filings, shows exactly where every number came from, and lets you take it all with you as an Excel workbook. It all runs right in your browser.",
+      description: "Search any public company and get its financials straight from SEC filings, with every number traced to its source and ready to export to Excel.",
       thumbnail: "images/projects/company-research.webp",
       tags: ["SEC filings", "Excel", "JavaScript"],
       github: "", // repo is private (empty = no GitHub button)
@@ -73,7 +73,7 @@ const SITE = {
     {
       id: "capstone",
       title: "OnDean Capstone: What Survives the AI Shift",
-      description: "My capstone for the OnDean Fellows Bootcamp. I wanted to know which software companies come out ahead as AI changes how people use and pay for software, so I compared Salesforce, Snowflake, CrowdStrike, Toast and HubSpot on retention, quality and AI exposure, then made my call: Snowflake.",
+      description: "My OnDean Fellows capstone: I compared five software companies on retention, quality and AI exposure to see who wins the AI shift. My call: Snowflake.",
       thumbnail: "images/capstone/slide-01.webp",
       tags: ["Equity research", "Valuation", "AI"],
       github: "",
@@ -83,7 +83,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "I rebuilt downtown Chicago in 3D so you can explore it right in your browser. Every building comes from real city data, and you can take a guided tour past landmarks like Willis Tower and Navy Pier, or slide the time of day from noon to night and watch the skyline light up.",
+      description: "Downtown Chicago rebuilt in 3D from real city data. Take a guided tour past Willis Tower and Navy Pier, or switch to night and watch the skyline light up.",
       thumbnail: "images/projects/chicago-3d.webp",
       tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
