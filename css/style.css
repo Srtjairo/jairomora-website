@@ -142,8 +142,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   position: relative; isolation: isolate;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 28px; text-align: center;
-  min-height: calc(82vh - var(--nav-h));
-  padding-top: 56px; padding-bottom: 72px;
+  padding-top: 56px; padding-bottom: 56px; /* no min-height: the next section starts right after the hero content */
 }
 .hero__photo {
   width: 184px; height: 184px; flex: none;
@@ -165,8 +164,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   .hero .socials { justify-content: flex-start; }
 }
 @media (max-width: 720px) {
-  /* Fill the first screen on phones too, so the hero reads as its own screen before "Currently working on". */
-  .hero { gap: 22px; min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); padding-top: 40px; padding-bottom: 56px; }
+  .hero { gap: 22px; padding-top: 40px; padding-bottom: 40px; }
   .hero__photo { width: 240px; height: 240px; }
 }
 
@@ -234,6 +232,8 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 /* ============ Sections ============ */
 .section { padding-top: 72px; padding-bottom: 72px; }
 .section + .section { border-top: 1px solid var(--border); }
+.hero + .section { padding-top: 56px; } /* sits right under the hero: less empty space */
+@media (max-width: 720px) { .hero + .section { padding-top: 40px; } }
 .hero + .section[hidden] + .section { border-top: 0; } /* "Currently working on" hidden: no divider straight under the hero */
 .section__head { margin-bottom: 32px; }
 
@@ -279,7 +279,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 }
 
 /* ============ Now cards ============ */
-.now-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); } /* auto-fill: 1-2 cards keep card width instead of stretching across */
+.now-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); } /* auto-fit: 1, 2 or 3 cards always fill the row, so a single card doesn't sit alone */
 .card {
   position: relative; isolation: isolate;
   background: var(--surface); border: 0; /* the hairline comes from --shadow's 1px ring */
@@ -297,7 +297,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
 }
 /* Keyboard: siblings step back and the whole focused card gets a ring */
 .now-grid:has(> .card:focus-visible) > .card:not(:focus-visible),
-.project-list:has(.project__main:focus-visible) .project:not(:has(.project__main:focus-visible)),
+.project-list:has(.project :focus-visible) .project:not(:has(:focus-visible)),
 .timeline:has(.post__toggle:focus-visible) .post__card:not(:has(.post__toggle:focus-visible)) { opacity: .6; }
 .post__card:has(.post__toggle:focus-visible),
 .project:has(.project__main:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -316,6 +316,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .now-card__head .pill { flex-shrink: 0; }
 .now-card h3 { margin: 0; font-size: 1.05rem; }
 .now-card p { margin: 6px 0 0; color: var(--text-muted); font-size: .9rem; line-height: 1.5; }
+.now-card__open { display: block; margin-top: 10px; font-size: .85rem; font-weight: 600; color: var(--accent); }
 
 .pill {
   display: inline-flex; align-items: center; gap: 6px;

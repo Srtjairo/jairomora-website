@@ -146,7 +146,8 @@
   <footer class="footer" id="contact">
     <div class="container footer__inner reveal">
       <h2>Let's connect. <span class="h-muted">Open to opportunities, collaborations, and a good conversation.</span></h2>
-      <a class="btn btn--primary" id="emailBtn" href="mailto:inbox@jairomora.com">Say hello</a>
+      <!-- email_off tells Cloudflare not to scramble this address, so Say hello works even without JavaScript -->
+      <!--email_off--><a class="btn btn--primary" id="emailBtn" href="mailto:inbox@jairomora.com">Say hello</a><!--/email_off-->
       <div class="socials socials--center" id="footerSocials"></div>
       <p class="footer__copy">© <span id="year"></span> <span data-name>Jairo A Mora</span></p>
     </div>

@@ -13,8 +13,6 @@ My personal portfolio and blog. Plain HTML/CSS/JS with no build step.
 | Add a blog post / update | Copy a block in `posts`, paste at the top, edit |
 | Add a project | Copy a block in `projects`, edit |
 
-Search for `TODO` to find every placeholder.
-
 ### Images
 - **Headshot:** save a square photo as `images/headshot.webp` (keep the original out of `images/`). Browsers cache it, so after replacing it bump the `?v=` number on the headshot in both `index.html` and `js/data.js` (e.g. `headshot.webp?v=2` → `?v=3`).
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
