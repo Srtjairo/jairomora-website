@@ -61,13 +61,17 @@
     if (p.github) links.push({ url: p.github, label: "GitHub", icon: ICONS.github });
     if (p.linkedin) links.push({ url: p.linkedin, label: "LinkedIn", icon: ICONS.linkedin });
     if (p.email) links.push({ url: "mailto:" + p.email, label: "Email", icon: ICONS.email });
-    if (p.resume) links.push({ url: p.resume, label: "Résumé", icon: ICONS.resume });
+    if (p.resume) links.push({ url: p.resume, label: "Resume", icon: ICONS.resume });
 
-    var html = links.map(function (l) {
+    function pill(l) {
       return '<a class="social" href="' + esc(l.url) + '"' + linkAttrs(l.url) + ">" + l.icon + esc(l.label) + "</a>";
-    }).join("");
-    $("#heroSocials").innerHTML = html;
-    $("#footerSocials").innerHTML = html;
+    }
+    // Hero: LinkedIn and Email as pills, then the resume as the one main (filled) button at the end (no GitHub here).
+    // Footer: every link as a pill.
+    var hero = links.filter(function (l) { return l.url !== p.resume && l.url !== p.github; }).map(pill).join("");
+    if (p.resume) hero += '<a class="btn btn--primary" href="' + esc(p.resume) + '" target="_blank" rel="noopener">' + ICONS.resume + "Resume</a>";
+    $("#heroSocials").innerHTML = hero;
+    $("#footerSocials").innerHTML = links.map(pill).join("");
   }
 
   /* ---------- Now ---------- */

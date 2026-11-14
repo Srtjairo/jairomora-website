@@ -229,6 +229,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 .social:hover { text-decoration: none; box-shadow: var(--shadow-ring-strong), 0 10px 20px -12px rgba(14, 23, 38, .25); transform: translateY(-1px); }
 .social:active { transform: translateY(0) scale(.97); transition-duration: var(--dur-fast); }
 .social svg { width: 16px; height: 16px; fill: currentColor; }
+.socials .btn { min-height: 44px; } /* the hero resume button lines up with the pills */
 
 /* ============ Sections ============ */
 .section { padding-top: 72px; padding-bottom: 72px; }
