@@ -37,7 +37,7 @@ const SITE = {
     },
     {
       title: "3D Chicago model",
-      description: "Still building it! Downtown Chicago in 3D, made from real city data with Three.js. Take the guided tour or switch it to night and watch the skyline light up.",
+      description: "Still building it! Chicago in 3D, 8 km around the Loop: downtown, 45 neighborhoods and the whole lakefront, from real city data. Switch it to night and watch it light up.",
       status: "In progress",
       link: "https://srtjairo.github.io/chicago-3d/"
     },
@@ -83,7 +83,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "Downtown Chicago rebuilt in 3D from real city data. Take a guided tour past Willis Tower and Navy Pier, or switch to night and watch the skyline light up.",
+      description: "Chicago in 3D, 8 km around the Loop: downtown, 45 neighborhoods and the lakefront, built from real city data. Fly around, or switch it to night.",
       thumbnail: "images/projects/chicago-3d.webp",
       tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
