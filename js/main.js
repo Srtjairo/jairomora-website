@@ -92,8 +92,10 @@
         : '<article class="card now-card">';
       var pill = n.status ? '<span class="pill pill--status">' + esc(n.status) + "</span>" : "";
       // clickable cards say so: slides open in the viewer, links open the page (↗ = opens in a new tab)
-      var hint = n.deck ? '<span class="now-card__open">View slides →</span>'
-        : n.link ? '<span class="now-card__open">Open ' + (/^https?:/.test(n.link) ? "↗" : "→") + "</span>" : "";
+      // (arrows are aria-hidden so screen readers don't read "north east arrow"; new tabs are announced in words)
+      var ext = n.link && /^https?:/.test(n.link);
+      var hint = n.deck ? '<span class="now-card__open">View slides <span aria-hidden="true">→</span></span>'
+        : n.link ? '<span class="now-card__open">Open <span aria-hidden="true">' + (ext ? "↗" : "→") + "</span>" + (ext ? '<span class="sr-only"> (opens in a new tab)</span>' : "") + "</span>" : "";
       return open +
         (n.deck // a <button> may only hold inline content, so spans styled like the h3/p
           ? '<span class="now-card__head"><span class="now-card__title">' + esc(n.title) + "</span>" + pill + '</span><span class="now-card__desc">' + esc(n.description) + "</span>" + hint

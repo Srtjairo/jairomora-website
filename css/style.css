@@ -233,7 +233,8 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 .section { padding-top: 72px; padding-bottom: 72px; }
 .section + .section { border-top: 1px solid var(--border); }
 .hero + .section { padding-top: 56px; } /* sits right under the hero: less empty space */
-@media (max-width: 720px) { .hero + .section { padding-top: 40px; } }
+.hero + .section[hidden] + .section { padding-top: 56px; } /* same when "Currently working on" is hidden */
+@media (max-width: 720px) { .hero + .section, .hero + .section[hidden] + .section { padding-top: 40px; } }
 .hero + .section[hidden] + .section { border-top: 0; } /* "Currently working on" hidden: no divider straight under the hero */
 .section__head { margin-bottom: 32px; }
 
@@ -316,7 +317,9 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .now-card__head .pill { flex-shrink: 0; }
 .now-card h3 { margin: 0; font-size: 1.05rem; }
 .now-card p { margin: 6px 0 0; color: var(--text-muted); font-size: .9rem; line-height: 1.5; }
-.now-card__open { display: block; margin-top: 10px; font-size: .85rem; font-weight: 600; color: var(--accent); }
+/* Text for screen readers only (visually hidden) */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.now-card__open { display: block; margin-top: auto; padding-top: 10px; font-size: .85rem; font-weight: 600; color: var(--accent); }
 
 .pill {
   display: inline-flex; align-items: center; gap: 6px;

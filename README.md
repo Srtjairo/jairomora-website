@@ -41,7 +41,7 @@ Cloudflare Pages redeploys in about a minute. To undo a release, go to Cloudflar
 
 1. **GitHub:** create an empty repo (e.g. `jairomora-website`), then:
    ```bash
-   git remote add origin https://github.com/YOUR-USERNAME/jairomora-website.git
+   git remote add origin https://github.com/Srtjairo/jairomora-website.git
    git branch -M main
    git push -u origin main
    ```
