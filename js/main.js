@@ -164,18 +164,17 @@
     });
   }
 
-  /* ---------- Projects carousel ---------- */
-  var index = 0;
+  /* ---------- Projects (all shown at once, stacked) ---------- */
   var projects = S.projects || [];
 
   function renderProjects() {
-    $("#track").innerHTML = projects.map(function (p, i) {
+    $("#projectList").innerHTML = projects.map(function (p, i) {
       var links = "";
       // the first link is the "main" one: the whole card opens it
       if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
-      if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" draggable="false" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
-      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" draggable="false" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
-      return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + " of " + projects.length + '">' +
+      if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
+      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
+      return "<li>" +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +
           '<div class="project__info">' +
@@ -183,60 +182,8 @@
             "<p>" + esc(p.description) + "</p>" +
             '<div class="tags">' + (p.tags || []).map(function (t) { return '<span class="pill pill--muted">' + esc(t) + "</span>"; }).join("") + "</div>" +
             '<div class="project__links">' + links + "</div>" +
-          "</div></article></div>";
+          "</div></article></li>";
     }).join("");
-
-    $("#dots").innerHTML = projects.map(function (p, i) {
-      return '<button class="dot" aria-label="Go to ' + esc(p.title) + '" data-i="' + i + '"></button>';
-    }).join("");
-
-    var single = projects.length <= 1;
-    $("#prevSlide").hidden = single;
-    $("#nextSlide").hidden = single;
-    $("#dots").hidden = single;
-    goTo(0);
-  }
-
-  function goTo(i) {
-    var n = projects.length;
-    if (!n) return;
-    index = (i + n) % n;
-    $("#track").style.transform = "translateX(-" + index * 100 + "%)";
-    document.querySelectorAll(".dot").forEach(function (d, j) {
-      d.setAttribute("aria-current", String(j === index));
-    });
-    document.querySelectorAll(".slide").forEach(function (s, j) {
-      s.setAttribute("aria-hidden", String(j !== index));
-      s.querySelectorAll("a, button").forEach(function (a) { a.tabIndex = j === index ? 0 : -1; });
-    });
-  }
-
-  function bindCarousel() {
-    $("#prevSlide").addEventListener("click", function () { goTo(index - 1); });
-    $("#nextSlide").addEventListener("click", function () { goTo(index + 1); });
-    $("#dots").addEventListener("click", function (e) {
-      var d = e.target.closest(".dot");
-      if (d) goTo(+d.getAttribute("data-i"));
-    });
-    var car = $("#carousel");
-    car.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { goTo(index - 1); e.preventDefault(); }
-      if (e.key === "ArrowRight") { goTo(index + 1); e.preventDefault(); }
-    });
-    // Swipe
-    var startX = null, startY = null, swiped = false;
-    car.addEventListener("pointerdown", function (e) { startX = e.clientX; startY = e.clientY; swiped = false; });
-    car.addEventListener("pointerup", function (e) {
-      if (startX === null) return;
-      var dx = e.clientX - startX, dy = e.clientY - startY;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { goTo(index + (dx < 0 ? 1 : -1)); swiped = true; }
-      startX = null;
-    });
-    // a mouse drag that swiped the carousel must not also open the card's link
-    car.addEventListener("click", function (e) {
-      if (swiped) { e.preventDefault(); e.stopPropagation(); swiped = false; }
-    }, true);
-    car.addEventListener("pointercancel", function () { startX = null; });
   }
 
   /* ---------- Slide viewer (projects with a `deck`) ---------- */
@@ -422,7 +369,6 @@
   renderPosts();
   bindPosts();
   renderProjects();
-  bindCarousel();
   bindDecks();
   bindTheme();
   bindScroll();

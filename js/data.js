@@ -61,7 +61,7 @@ const SITE = {
     }
   ],
 
-  // Projects slideshow
+  // Projects (all shown as cards)
   projects: [
     {
       title: "Company Research",

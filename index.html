@@ -75,7 +75,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202611131822" />
+  <link rel="stylesheet" href="css/style.css?v=202611131903" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -123,23 +123,10 @@
 
     <!-- PROJECTS -->
     <section class="section container reveal" id="projects">
-      <div class="section__head section__head--row">
-        <div>
-          <h2>Projects. <span class="h-muted">Take a look.</span></h2>
-        </div>
-        <div class="carousel__controls">
-          <button class="icon-btn" id="prevSlide" aria-label="Previous project">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="icon-btn" id="nextSlide" aria-label="Next project">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
+      <div class="section__head">
+        <h2>Projects. <span class="h-muted">Take a look.</span></h2>
       </div>
-      <div class="carousel" id="carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects">
-        <div class="carousel__track" id="track"></div>
-      </div>
-      <div class="carousel__dots" id="dots"></div>
+      <ul class="project-list" id="projectList"></ul>
     </section>
 
     <!-- TIMELINE (updates / blog) -->
@@ -163,7 +150,7 @@
     </div>
   </footer>
 
-  <script src="js/data.js?v=202611131822"></script>
-  <script src="js/main.js?v=202611131822"></script>
+  <script src="js/data.js?v=202611131903"></script>
+  <script src="js/main.js?v=202611131903"></script>
 </body>
 </html>
