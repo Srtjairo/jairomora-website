@@ -7,7 +7,6 @@
   /* text: navy-black + slate */
   --text: #0e1726;
   --text-muted: #5a6478;    /* 5.75:1 on --bg (AA) */
-  --text-faint: #8a93a3;    /* 3.0:1: decorative / large text only */
   --text-on-glow: color-mix(in srgb, var(--text) 80%, var(--bg)); /* muted text that sits on the hero glow */
   /* lines & accent */
   --border: rgba(14, 23, 38, .08);   /* hairline */
@@ -49,7 +48,6 @@
   --surface: #12151c;
   --text: #eef0f3;
   --text-muted: #9aa3b0;
-  --text-faint: #6b7280;
   --border: rgba(255, 255, 255, .08);
   --border-strong: rgba(255, 255, 255, .14);
   --accent: #8b9dff;
@@ -167,8 +165,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   .hero .socials { justify-content: flex-start; }
 }
 @media (max-width: 720px) {
-  /* Fill the first screen on phones too: the hero text is filled in by JS after first paint, and a
-     shorter hero let that growth shove the "Now" section down (mobile CLS 0.52). */
+  /* Fill the first screen on phones too, so the hero reads as its own screen before "Currently working on". */
   .hero { gap: 22px; min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); padding-top: 40px; padding-bottom: 56px; }
   .hero__photo { width: 240px; height: 240px; }
 }
@@ -327,15 +324,15 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .pill--status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .pill--muted { background: var(--bg-soft); color: var(--text-muted); box-shadow: inset 0 0 0 1px var(--border); }
 
-/* ============ Updates / timeline ============ */
+/* ============ Timeline ============ */
 .filters { display: flex; gap: 10px 8px; flex-wrap: wrap; margin-bottom: 24px; }
 .chip {
   padding: 6px 14px; border-radius: 999px; cursor: pointer;
   border: 0; box-shadow: var(--shadow); background: var(--surface); color: var(--text-muted);
   transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
   font: inherit; font-size: .88rem; font-weight: 500;
+  position: relative;
 }
-.chip { position: relative; }
 .chip::after { content: ""; position: absolute; left: 0; right: 0; top: -5px; bottom: -5px; } /* 45px tap area, same look */
 .chip:hover { color: var(--text); box-shadow: var(--shadow-ring-strong); }
 .chip:active { transform: scale(.96); }
@@ -378,14 +375,14 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .btn svg { width: 16px; height: 16px; fill: currentColor; }
 .btn--primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 1px 2px rgba(14, 23, 38, .12); }
 .btn--primary:hover { box-shadow: 0 12px 24px -10px color-mix(in srgb, var(--accent) 70%, transparent); }
-.btn--ghost { background: var(--surface); color: var(--text); box-shadow: var(--shadow); margin: 8px 0 0 36px; }
+.btn--ghost { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+#showMore { margin: 8px 0 0 36px; } /* lines up with the timeline cards */
 .btn--ghost:hover { box-shadow: var(--shadow-ring-strong), 0 10px 20px -12px rgba(14, 23, 38, .25); }
 
 /* ============ Projects carousel ============ */
 .carousel__controls { display: flex; gap: 8px; }
 .carousel { overflow: hidden; outline: none; }
-.carousel:focus-visible { border-radius: var(--radius); }
-.carousel:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.carousel:focus-visible { border-radius: var(--radius); outline: 2px solid var(--accent); outline-offset: 4px; }
 .carousel__track { display: flex; transition: transform .5s cubic-bezier(.22, .8, .2, 1); touch-action: pan-y; }
 .slide { flex: 0 0 100%; min-width: 0; padding: 2px 2px 40px; } /* bottom room for the float shadow */
 .project {
@@ -413,7 +410,8 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .project__info { padding: 22px; }
   .project__info h3 { font-size: 1.25rem; }
 }
-.carousel__dots { display: flex; justify-content: center; gap: 0; margin-top: -34px; }
+/* Pulled up into the slide's shadow room, so lift the dots above the slide or it swallows their taps */
+.carousel__dots { position: relative; z-index: 3; display: flex; justify-content: center; gap: 0; margin-top: -34px; }
 /* 44px tap target; the visible dot is the ::before */
 .dot {
   display: grid; place-items: center; width: 44px; height: 44px;

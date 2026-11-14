@@ -16,7 +16,7 @@ My personal portfolio and blog. Plain HTML/CSS/JS with no build step.
 Search for `TODO` to find every placeholder.
 
 ### Images
-- **Headshot:** save a square photo as `images/headshot.jpg`, then set `headshot: "images/headshot.jpg"`.
+- **Headshot:** save a square photo as `images/headshot.webp` (keep the original out of `images/`). Browsers cache it, so after replacing it bump the `?v=` number on the headshot in both `index.html` and `js/data.js` (e.g. `headshot.webp?v=2` → `?v=3`).
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
 - Keep images under ~500 KB each so the site stays fast (compress at squoosh.app).
 

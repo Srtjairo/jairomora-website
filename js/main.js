@@ -40,12 +40,13 @@
     var p = S.profile;
     document.querySelectorAll("[data-name]").forEach(function (el) { el.textContent = p.name; });
     // Hero: last word of the name gets the gradient (built with text nodes, no HTML injection)
+    // (the h1 has no data-name: it is built only here, so a one-word name still gets the gradient)
     var h1 = $(".hero__name"), parts = String(p.name || "").trim().split(/\s+/);
-    if (h1 && parts.length > 1) {
+    if (h1 && parts[0]) {
       var last = document.createElement("span");
       last.className = "gradient-word";
       last.textContent = parts.pop();
-      h1.textContent = parts.join(" ") + " ";
+      h1.textContent = parts.length ? parts.join(" ") + " " : "";
       h1.appendChild(last);
     }
     var img = $("#headshot");
@@ -173,7 +174,7 @@
       // the first link is the "main" one: the whole card opens it
       if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
       if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" draggable="false" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
-      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" draggable="false" style="margin:0" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
+      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" draggable="false" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
       return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + " of " + projects.length + '">' +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +

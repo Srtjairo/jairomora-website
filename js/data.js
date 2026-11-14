@@ -49,7 +49,7 @@ const SITE = {
     }
   ],
 
-  // Updates / blog - newest first. tag can be anything; common ones:
+  // Timeline posts - newest first. tag can be anything; common ones:
   // "Achievement", "Project", "Learning", "Life"
   posts: [
     {
