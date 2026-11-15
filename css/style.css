@@ -21,7 +21,7 @@
   --glow-4: #fb7185;        /* coral */
   /* gradient words: deeper stops in light mode so large text keeps >= 3:1 on --bg */
   --gradient-text: linear-gradient(90deg, #2563eb, #6d28d9 50%, #be185d); /* >= 3:1 even over the glow */
-  --glow-opacity: .55;
+  --glow-opacity: .4125;
   /* shapes */
   --radius: 16px;
   --radius-lg: 28px;
@@ -58,7 +58,7 @@
   --shadow-ring-strong: 0 0 0 1px var(--border-strong);
   /* glow colours stay; rendered at lower opacity in dark mode */
   --gradient-text: linear-gradient(90deg, var(--glow-1), var(--glow-2) 45%, var(--glow-3));
-  --glow-opacity: .32;
+  --glow-opacity: .24;
   color-scheme: dark;
 }
 
@@ -175,7 +175,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 }
 @media (max-width: 720px) {
   .hero { gap: 22px; padding-top: 40px; padding-bottom: 40px; }
-  .hero__photo { width: 240px; height: 240px; }
+  .hero__photo { width: 200px; height: 200px; }
 }
 
 /* 404 page: no photo, so keep the text centred at every width */
@@ -402,7 +402,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
   display: flex; flex-direction: column; overflow: hidden; padding: 0;
   height: 100%; box-shadow: var(--shadow-float);
 }
-.project__thumb { aspect-ratio: 16 / 10; background: var(--bg-soft); overflow: hidden; flex-shrink: 0; }
+.project__thumb { position: relative; aspect-ratio: 16 / 10; background: var(--bg-soft); overflow: hidden; flex-shrink: 0; }
 .project__thumb img { width: 100%; height: 100%; object-fit: cover; }
 /* Hover clip over the still (see wireProjectVideos in main.js): fades in while it plays. */
 .project__thumb:has(.project__video) { position: relative; }
@@ -415,7 +415,8 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .project__info p { margin: 0; color: var(--text-muted); font-size: .9rem; line-height: 1.5; }
 .project__links .btn { padding: 8px 14px; font-size: .86rem; gap: 6px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.project__links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+.project__info .tags { margin-top: auto; padding-top: 4px; }
+.project__links { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 8px; }
 /* Whole card opens the main link; other buttons sit above the stretched area */
 .project__main::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: var(--radius); } /* not inherit: that would copy the pill button's radius */
 .project__main:focus-visible { outline: none; } /* ring is drawn on the whole .project */
@@ -436,14 +437,31 @@ a.card { display: block; color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .project-list { grid-template-columns: 1fr; gap: 16px; }
   .project { flex-direction: row; }
-  .project__thumb { width: 42%; aspect-ratio: auto; }
+  .project__thumb { width: 42%; aspect-ratio: auto; min-height: 220px; }
 }
 @media (max-width: 560px) {
   .project { flex-direction: column; }
-  .project__thumb { width: auto; aspect-ratio: 2 / 1; }
+  .project__thumb { width: auto; aspect-ratio: 16 / 10; min-height: 0; }
   .project__info { padding: 16px 18px 18px; }
   .project__links .btn { min-height: 44px; } /* full-size tap target on phones */
 }
+
+/* Project previews: crop the original screenshot without changing its source. */
+.project__thumb--research img { position: absolute; max-width: none; width: 170%; height: 170%; object-fit: fill; left: -26%; top: -70%; }
+.project__cover { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 24px; background: #0e1d2c; color: #eef0f3; }
+.project__cover-label { color: #a8c4d4; font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.project__cover-title { max-width: 15ch; margin-top: 16px; font-size: clamp(1.4rem, 2.5vw, 1.75rem); line-height: 1.12; font-weight: 600; letter-spacing: -.035em; }
+.project__cover-detail { border-top: 1px solid #395064; margin-top: 18px; padding-top: 12px; font-size: .72rem; color: #b9ccd8; }
+@media (min-width: 901px) {
+  .project__info h3 { min-height: 2.6em; }
+}
+
+/* One update is a compact note; a growing archive retains the timeline layout. */
+.section--latest { padding-top: 44px; padding-bottom: 48px; }
+.section--latest .section__head { margin-bottom: 22px; }
+.section--latest .timeline::before, .section--latest .post::before { display: none; }
+.section--latest .post { padding-left: 0; margin-bottom: 0; }
+.section--latest #showMore { margin-left: 0; }
 
 /* ============ Footer ============ */
 .footer { position: relative; isolation: isolate; overflow: hidden; background: var(--bg-soft); border-top: 1px solid var(--border); padding: 72px 0 40px; }
@@ -460,6 +478,7 @@ a.card { display: block; color: inherit; text-decoration: none; }
   opacity: calc(var(--glow-opacity) * .55);
 }
 .footer__inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.footer__intro { max-width: 44ch; margin: 14px 0 0; color: var(--text-muted); text-wrap: balance; }
 .footer__inner .btn { margin-top: 24px; }
 .footer__copy { margin: 40px 0 0; color: var(--text-muted); font-size: .85rem; }
 
