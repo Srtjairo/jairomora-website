@@ -37,8 +37,8 @@ const SITE = {
     },
     {
       title: "3D Chicago model",
-      description: "Still building it! Chicago in 3D, 8 km around the Loop: downtown, 45 neighborhoods and the whole lakefront, from real city data. Switch it to night and watch it light up.",
-      status: "In progress",
+      description: "Just launched! Chicago in 3D, 8 km around the Loop: downtown, 40 neighborhoods and the whole lakefront, from real city data. Switch it to night and watch it light up.",
+      status: "Live",
       link: "https://srtjairo.github.io/chicago-3d/"
     },
     {
@@ -83,7 +83,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "Chicago in 3D, 8 km around the Loop: downtown, 45 neighborhoods and the lakefront, built from real city data. Fly around, or switch it to night.",
+      description: "Chicago in 3D, 8 km around the Loop: downtown, 40 neighborhoods and the lakefront, built from real city data. Fly around, or switch it to night.",
       thumbnail: "images/projects/chicago-3d.webp",
       tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
