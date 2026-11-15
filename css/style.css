@@ -119,7 +119,12 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
   .nav__links a { padding: 6px 7px; font-size: .85rem; white-space: nowrap; }
   .nav__brand img { height: 32px; }
 }
-@media (max-width: 360px) {
+/* Small phones with all four menu links showing: no room for the logo too */
+@media (max-width: 389px) {
+  .nav__inner:not(:has(.nav__links li[hidden])) .nav__brand { display: none; }
+  .nav__inner:not(:has(.nav__links li[hidden])) nav { margin-right: auto; }
+}
+@media (max-width: 374px) {
   .nav__brand { display: none; } /* too narrow for logo + links */
   .nav__inner nav { margin-right: auto; }
   .nav__inner { gap: 4px; }
