@@ -425,6 +425,13 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .project__links .btn:not(.project__main) { position: relative; z-index: 2; }
 .btn--dark { background: var(--text); color: var(--bg); }
 .btn--dark:hover { box-shadow: 0 12px 24px -10px rgba(14, 23, 38, .45); }
+/* Card buttons light up only while the card is hovered or keyboard-focused (like the 3D Chicago clip).
+   Touch screens have no hover, so there the buttons simply stay lit. */
+.project__links .btn { background: var(--text); color: var(--bg); box-shadow: none;
+  transition: transform var(--dur) var(--ease-out), background var(--dur) var(--ease-out), color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
+@media (hover: hover) {
+  .project:not(:hover):not(:has(:focus-visible)) .project__links .btn { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+}
 @media (max-width: 900px) {
   .project-list { grid-template-columns: 1fr; gap: 16px; }
   .project { flex-direction: row; }
