@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jairo Mora – Trader, Builder, Student</title>
+  <title>Jairo Mora – Finance graduate, Researcher, Builder</title>
   <meta name="description" content="Jairo Mora – UIUC Gies finance graduate (2026) in Chicago. Options swing trader and builder of research tools, including a 3D model of Chicago." />
   <meta name="author" content="Jairo A Mora" />
   <link rel="canonical" href="https://jairomora.com/" />
@@ -12,7 +12,7 @@
   <meta property="og:type" content="profile" />
   <meta property="og:site_name" content="Jairo Mora" />
   <meta property="og:url" content="https://jairomora.com/" />
-  <meta property="og:title" content="Jairo Mora – Trader, Builder, Student" />
+  <meta property="og:title" content="Jairo Mora – Finance graduate, Researcher, Builder" />
   <meta property="og:description" content="UIUC Gies finance graduate, options swing trader and builder of research tools. Projects, resume and contact." />
   <meta property="og:image" content="https://jairomora.com/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -36,7 +36,7 @@
         "familyName": "Mora",
         "url": "https://jairomora.com/",
         "image": "https://jairomora.com/images/headshot.webp",
-        "jobTitle": "Trader, Builder, Student",
+        "jobTitle": "Finance graduate, Researcher, Builder",
         "description": "Finance graduate from the University of Illinois Urbana-Champaign (Gies College of Business), options swing trader and builder of research tools.",
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign" },
         "address": { "@type": "PostalAddress", "addressLocality": "Chicago", "addressRegion": "IL" },
@@ -49,7 +49,7 @@
         "@type": "ProfilePage",
         "@id": "https://jairomora.com/#page",
         "url": "https://jairomora.com/",
-        "name": "Jairo Mora – Trader, Builder, Student",
+        "name": "Jairo Mora – Finance graduate, Researcher, Builder",
         "mainEntity": { "@id": "https://jairomora.com/#person" }
       },
       {
@@ -83,7 +83,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=202611150733" />
+  <link rel="stylesheet" href="css/style.css?v=202611150810" />
 </head>
 <body id="top"><!-- the logo links here: the very top of the page (the sticky menu bar can't be the target, it moves with you) -->
   <a class="skip-link" href="#main">Skip to content</a>
@@ -95,7 +95,7 @@
         <ul class="nav__links">
           <li><a href="#now">Working on</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#timeline">Updates</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -115,8 +115,8 @@
       <img class="hero__photo" id="headshot" fetchpriority="high" src="images/headshot.webp?v=3" alt="Headshot of Jairo A Mora" width="368" height="368" />
       <div class="hero__text">
         <h1 class="hero__name">Jairo A <span class="gradient-word">Mora</span></h1>
-        <p class="hero__tagline" id="tagline">Trader · Builder · Student</p>
-        <p class="hero__bio" id="bio">I'm a finance graduate from UIUC's Gies College of Business (class of 2026), based in Chicago. I swing trade options, and I build tools that make research faster, like an app that pulls financials straight from SEC filings. I also built a pretty accurate 3D model of Chicago, which you can explore below. You should check it out!</p>
+        <p class="hero__tagline" id="tagline">Finance graduate · Researcher · Builder</p>
+        <p class="hero__bio" id="bio">I'm a Chicago-based finance graduate from UIUC's Gies College of Business (class of 2026) who swing trades options and builds tools for investment research. Explore my SEC research app, software-company capstone, and interactive 3D model of Chicago below.</p>
         <div class="socials" id="heroSocials"></div>
       </div>
     </section>
@@ -132,7 +132,7 @@
     <!-- PROJECTS -->
     <section class="section container reveal" id="projects">
       <div class="section__head">
-        <h2>Projects. <span class="h-muted">Take a look.</span></h2>
+        <h2>Selected projects<span class="h-muted">.</span></h2>
       </div>
       <ul class="project-list" id="projectList"></ul>
     </section>
@@ -140,9 +140,9 @@
     <!-- TIMELINE (updates / blog) -->
     <section class="section container reveal" id="timeline">
       <div class="section__head">
-        <h2>Timeline. <span class="h-muted">Achievements and milestones.</span></h2>
+        <h2 id="updatesHeading">Latest update<span class="h-muted">.</span></h2>
       </div>
-      <div class="filters" id="postFilters" role="toolbar" aria-label="Filter timeline"></div>
+      <div class="filters" id="postFilters" role="toolbar" aria-label="Filter updates"></div>
       <ol class="timeline" id="postList"></ol>
       <button class="btn btn--ghost" id="showMore" hidden>Show more</button>
     </section>
@@ -151,7 +151,8 @@
   <!-- CONTACT -->
   <footer class="footer" id="contact">
     <div class="container footer__inner reveal">
-      <h2>Let's connect. <span class="h-muted">Open to opportunities, collaborations, and a good conversation.</span></h2>
+      <h2>Let's connect<span class="h-muted">.</span></h2>
+      <p class="footer__intro">Research, financial tools, and ideas worth sharing.</p>
       <!-- email_off tells Cloudflare not to scramble this address, so Say hello works even without JavaScript -->
       <!--email_off--><a class="btn btn--primary" id="emailBtn" href="mailto:inbox@jairomora.com">Say hello</a><!--/email_off-->
       <div class="socials socials--center" id="footerSocials"></div>
@@ -159,7 +160,7 @@
     </div>
   </footer>
 
-  <script src="js/data.js?v=202611150733"></script>
-  <script src="js/main.js?v=202611150733"></script>
+  <script src="js/data.js?v=202611150810"></script>
+  <script src="js/main.js?v=202611150810"></script>
 </body>
 </html>
