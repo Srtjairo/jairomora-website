@@ -14,7 +14,7 @@ My personal portfolio and blog. Plain HTML/CSS/JS with no build step.
 | Add a project | Copy a block in `projects`, edit |
 
 ### Images
-- **Headshot:** save a square photo as `images/headshot.webp` (keep the original out of `images/`). Nothing else to change: `/ship` stamps a new `?v=` on it in `index.html` at every release, so visitors get the new photo. To use a photo with a different file name instead, point `headshot` in `js/data.js` to it (no `?v=` needed there).
+- **Headshot:** save a square photo as `images/headshot.webp` (keep the original out of `images/`). Nothing else to change: `/ship` stamps a new `?v=` on it in `index.html` at every release, so visitors get the new photo. To use a photo with a different file name instead, change it in three places: `headshot` in `js/data.js` (no `?v=` needed there), and in `index.html` the hero photo's `src` and the `"image"` in the Google profile data near the top. If `index.html` still names the old file, visitors download both photos.
 - **Project thumbnails:** save screenshots in `images/projects/` (16:10 works best, e.g. 1600×1000) and update each project's `thumbnail`.
 - **Resume:** save the new PDF over `files/Jairo-Mora-Resume.pdf` (same name, so the hero button keeps working). To hide the button, set `resume: ""` in `js/data.js`.
 - Keep images under ~500 KB each so the site stays fast (compress at squoosh.app).
