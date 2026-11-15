@@ -17,7 +17,7 @@ const SITE = {
     name: "Jairo A Mora",
     tagline: "Trader · Builder · Student",
     bio: "I'm a finance graduate from UIUC's Gies College of Business (class of 2026), based in Chicago and looking for my first full-time role in equity research, valuation or financial modeling. I swing trade options, and I build tools that make research faster, like an app that pulls financials straight from SEC filings. Right now I'm an OnDean Fellow, where my capstone made the call on Snowflake.",
-    headshot: "images/headshot.webp?v=2", // bump ?v= when the photo changes (browsers cache images 4h).
+    headshot: "images/headshot.webp?v=3", // bump ?v= when the photo changes (browsers cache images 4h).
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/Srtjairo",
     linkedin: "https://www.linkedin.com/in/jairo-mor",
