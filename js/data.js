@@ -25,8 +25,9 @@ const SITE = {
   },
 
   // "Currently working on" cards (2-3 is ideal)
-  // A card whose status is "Finished", "Just launched", "Launched", "Done" or "Completed" is
-  // hidden automatically, so changing the status is all it takes to take a card off.
+  // A card whose status is "Finished", "Just launched", "Launched", "Done", "Complete" or
+  // "Completed" is hidden automatically, so changing the status is all it takes to take a
+  // card off. Any other status (e.g. "Live", "In progress") keeps the card visible.
   // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {
@@ -56,7 +57,7 @@ const SITE = {
       title: "Launching jairomora.com",
       tag: "Project",
       summary: "My new home on the web for projects, updates, and wins.",
-      body: "I built this site to keep everything I'm working on in one place - projects, milestones, and what I'm learning along the way.\n\nCheck back for updates on my capstone and the 3D Chicago model."
+      body: "I built this site to keep everything I'm working on in one place - projects, milestones, and what I'm learning along the way."
     }
   ],
 
@@ -75,8 +76,9 @@ const SITE = {
       id: "capstone",
       title: "OnDean Capstone",
       description: "Five software companies compared on retention, quality, and AI exposure. My OnDean Fellows capstone call: Snowflake.",
-      thumbnail: "images/capstone/slide-01.webp",
-      cover: { label: "OnDean Fellows · Equity research", title: "What survives the AI shift", detail: "5 companies. One investment thesis." },
+      thumbnail: "images/projects/ondean-capstone.webp", // the title slide, framed; the clip's first frame
+      preview: "deck", // tablet widths show the whole framed slide (dark band above and below) instead of cropping its sides
+      video: "images/projects/ondean-capstone.mp4", // hover clip: title -> five companies -> retention -> AI exposure -> the call, then loops
       tags: ["Equity research", "Valuation", "AI"],
       github: "",
       demo: "",
