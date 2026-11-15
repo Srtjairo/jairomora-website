@@ -186,7 +186,7 @@
       return "<li>" +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">' +
-            (p.video ? '<video class="project__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '" data-start="' + (Number(p.videoStart) || 0) + '"></video>' : "") +
+            (p.video ? '<video class="project__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '"></video>' : "") +
           "</div>" +
           '<div class="project__info">' +
             "<h3>" + esc(p.title) + "</h3>" +
@@ -198,21 +198,33 @@
     wireProjectVideos();
   }
 
-  // Cards with a `video`: hovering (or keyboard focus) plays the short clip over the still; leaving
-  // stops it and shows the still again. Only where a mouse can hover, never with reduced motion,
-  // and the clip only downloads the first time it's played.
+  // Cards with a `video`: hovering (or keyboard focus) plays the short looping clip over the still;
+  // leaving stops it and shows the still again. Only where a mouse can hover, never with reduced
+  // motion. The clip preloads when the card comes near the screen, so it starts at once on hover;
+  // phones never download it.
   function wireProjectVideos() {
     var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
     var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var allowed = function () { return canHover.matches && !reduced.matches; };
     Array.prototype.forEach.call(document.querySelectorAll("#projectList .project__video"), function (video) {
       var card = video.closest(".project"), thumb = video.parentNode;
-      var start = Number(video.getAttribute("data-start")) || 0; // where the motion begins
+      function load() {
+        if (video.getAttribute("src")) return;
+        video.preload = "auto";
+        video.src = video.getAttribute("data-src");
+      }
+      // Preload only after the rest of the page has finished loading, so it never delays it.
+      function watch() {
+        if (!allowed() || !("IntersectionObserver" in window)) return;
+        var near = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { load(); near.disconnect(); }
+        }, { rootMargin: "300px 0px" });
+        near.observe(card);
+      }
+      if (document.readyState === "complete") watch(); else window.addEventListener("load", watch, { once: true });
       function play() {
-        if (!canHover.matches || reduced.matches) return;
-        if (!video.getAttribute("src")) {
-          video.src = video.getAttribute("data-src");
-          video.addEventListener("loadedmetadata", function () { video.currentTime = start; }, { once: true });
-        } else if (video.readyState) video.currentTime = start;
+        if (!allowed()) return;
+        load();
         var started = video.play();
         thumb.classList.add("is-playing");
         if (started && started.catch) started.catch(function () { thumb.classList.remove("is-playing"); });
@@ -220,7 +232,7 @@
       function stop() {
         thumb.classList.remove("is-playing");
         video.pause();
-        if (video.readyState) video.currentTime = start;
+        if (video.readyState) video.currentTime = 0;
       }
       card.addEventListener("mouseenter", play);
       card.addEventListener("mouseleave", stop);
