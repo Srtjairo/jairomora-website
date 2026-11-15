@@ -15,8 +15,8 @@ const SITE = {
   // (the <head> tags + Person data, and the hero text) - those are what Google reads.
   profile: {
     name: "Jairo A Mora",
-    tagline: "Trader · Builder · Student",
-    bio: "I'm a finance graduate from UIUC's Gies College of Business (class of 2026), based in Chicago. I swing trade options, and I build tools that make research faster, like an app that pulls financials straight from SEC filings. I also built a pretty accurate 3D model of Chicago, which you can explore below. You should check it out!",
+    tagline: "Finance graduate · Researcher · Builder",
+    bio: "I'm a Chicago-based finance graduate from UIUC's Gies College of Business (class of 2026) who swing trades options and builds tools for investment research. Explore my SEC research app, software-company capstone, and interactive 3D model of Chicago below.",
     headshot: "images/headshot.webp?v=3", // bump ?v= when the photo changes (browsers cache images 4h).
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/Srtjairo",
@@ -64,17 +64,19 @@ const SITE = {
   projects: [
     {
       title: "Company Research",
-      description: "Search any public company and get its financials straight from SEC filings, with every number traced to its source and ready to export to Excel.",
+      description: "Public-company financials from SEC filings, with source-linked numbers and Excel exports for faster research.",
       thumbnail: "images/projects/company-research.webp",
+      preview: "financials", // crop the financial chart with CSS; keep the source screenshot intact
       tags: ["SEC filings", "Excel", "JavaScript"],
       github: "", // repo is private (empty = no GitHub button)
       demo: "https://research.jairomora.com"
     },
     {
       id: "capstone",
-      title: "OnDean Capstone: What Survives the AI Shift",
-      description: "My OnDean Fellows capstone: I compared five software companies on retention, quality and AI exposure to see who wins the AI shift. My call: Snowflake.",
+      title: "OnDean Capstone",
+      description: "Five software companies compared on retention, quality, and AI exposure. My OnDean Fellows capstone call: Snowflake.",
       thumbnail: "images/capstone/slide-01.webp",
+      cover: { label: "OnDean Fellows · Equity research", title: "What survives the AI shift", detail: "5 companies. One investment thesis." },
       tags: ["Equity research", "Valuation", "AI"],
       github: "",
       demo: "",
@@ -83,7 +85,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "Chicago in 3D, 8 km around the Loop: downtown, 40 neighborhoods and the lakefront, built from real city data. Fly around, or switch it to night.",
+      description: "An interactive city model built from real GIS data: 40 neighborhoods, the lakefront, and a day-to-night view of Chicago.",
       thumbnail: "images/projects/chicago-3d-dusk.webp",
       video: "images/projects/chicago-3d-dusk.mp4", // optional: a short silent looping clip that plays when you hover over the card
       tags: ["Three.js", "JavaScript", "GIS data"],

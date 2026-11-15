@@ -109,6 +109,9 @@
 
   /* ---------- Posts ---------- */
   var posts = (S.posts || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  // A single launch note needs less space than a full archive.
+  $("#timeline").classList.toggle("section--latest", posts.length === 1);
+  $("#updatesHeading").innerHTML = (posts.length === 1 ? "Latest update" : "Updates") + '<span class="h-muted">.</span>';
   var activeTag = "All";
   var visibleCount = POSTS_PER_PAGE;
 
@@ -186,9 +189,12 @@
       if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
       if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub" + newTabNote(p.github) + "</a>";
       if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo" + newTabNote(p.demo) + "</a>";
+      var preview = p.cover
+        ? '<div class="project__cover"><span class="project__cover-label">' + esc(p.cover.label) + '</span><span class="project__cover-title">' + esc(p.cover.title) + '</span><span class="project__cover-detail">' + esc(p.cover.detail) + '</span></div>'
+        : '<img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">';
       return "<li>" +
         '<article class="card project">' +
-          '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">' +
+          '<div class="project__thumb' + (p.preview === "financials" ? ' project__thumb--research' : '') + '">' + preview +
             (p.video ? '<video class="project__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '"></video>' : "") +
           "</div>" +
           '<div class="project__info">' +
