@@ -185,7 +185,9 @@
       if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
       return "<li>" +
         '<article class="card project">' +
-          '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +
+          '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">' +
+            (p.video ? '<video class="project__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '"></video>' : "") +
+          "</div>" +
           '<div class="project__info">' +
             "<h3>" + esc(p.title) + "</h3>" +
             "<p>" + esc(p.description) + "</p>" +
@@ -193,6 +195,50 @@
             '<div class="project__links">' + links + "</div>" +
           "</div></article></li>";
     }).join("");
+    wireProjectVideos();
+  }
+
+  // Cards with a `video`: hovering (or keyboard focus) plays the short looping clip over the still;
+  // leaving stops it and shows the still again. Only where a mouse can hover, never with reduced
+  // motion. The clip preloads when the card comes near the screen, so it starts at once on hover;
+  // phones never download it.
+  function wireProjectVideos() {
+    var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var allowed = function () { return canHover.matches && !reduced.matches; };
+    Array.prototype.forEach.call(document.querySelectorAll("#projectList .project__video"), function (video) {
+      var card = video.closest(".project"), thumb = video.parentNode;
+      function load() {
+        if (video.getAttribute("src")) return;
+        video.preload = "auto";
+        video.src = video.getAttribute("data-src");
+      }
+      // Preload only after the rest of the page has finished loading, so it never delays it.
+      function watch() {
+        if (!allowed() || !("IntersectionObserver" in window)) return;
+        var near = new IntersectionObserver(function (entries) {
+          if (entries.some(function (e) { return e.isIntersecting; })) { load(); near.disconnect(); }
+        }, { rootMargin: "300px 0px" });
+        near.observe(card);
+      }
+      if (document.readyState === "complete") watch(); else window.addEventListener("load", watch, { once: true });
+      function play() {
+        if (!allowed()) return;
+        load();
+        var started = video.play();
+        thumb.classList.add("is-playing");
+        if (started && started.catch) started.catch(function () { thumb.classList.remove("is-playing"); });
+      }
+      function stop() {
+        thumb.classList.remove("is-playing");
+        video.pause();
+        if (video.readyState) video.currentTime = 0;
+      }
+      card.addEventListener("mouseenter", play);
+      card.addEventListener("mouseleave", stop);
+      card.addEventListener("focusin", play);
+      card.addEventListener("focusout", function (e) { if (!card.contains(e.relatedTarget)) stop(); });
+    });
   }
 
   /* ---------- Slide viewer (projects with a `deck`) ---------- */
