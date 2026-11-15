@@ -438,6 +438,8 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .project-list { grid-template-columns: 1fr; gap: 16px; }
   .project { flex-direction: row; }
   .project__thumb { width: 42%; aspect-ratio: auto; min-height: 220px; }
+  .project__thumb--deck { background: #0b0d12; }
+  .project__thumb--deck img, .project__thumb--deck .project__video { object-fit: contain; }
 }
 @media (max-width: 560px) {
   .project { flex-direction: column; }

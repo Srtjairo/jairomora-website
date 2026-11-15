@@ -194,7 +194,7 @@
         : '<img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">';
       return "<li>" +
         '<article class="card project">' +
-          '<div class="project__thumb' + (p.preview === "financials" ? ' project__thumb--research' : '') + '">' + preview +
+          '<div class="project__thumb' + (p.preview === "financials" ? ' project__thumb--research' : p.preview === "deck" ? ' project__thumb--deck' : '') + '">' + preview +
             (p.video ? '<video class="project__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '"></video>' : "") +
           "</div>" +
           '<div class="project__info">' +

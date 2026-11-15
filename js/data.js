@@ -76,8 +76,9 @@ const SITE = {
       id: "capstone",
       title: "OnDean Capstone",
       description: "Five software companies compared on retention, quality, and AI exposure. My OnDean Fellows capstone call: Snowflake.",
-      thumbnail: "images/capstone/slide-01.webp",
-      cover: { label: "OnDean Fellows · Equity research", title: "What survives the AI shift", detail: "5 companies. One investment thesis." },
+      thumbnail: "images/projects/ondean-capstone.webp", // the title slide, framed; the clip's first frame
+      preview: "deck", // tablet widths show the whole framed slide (dark band above and below) instead of cropping its sides
+      video: "images/projects/ondean-capstone.mp4", // hover clip: title -> five companies -> retention -> AI exposure -> the call, then loops
       tags: ["Equity research", "Valuation", "AI"],
       github: "",
       demo: "",
