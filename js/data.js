@@ -25,8 +25,9 @@ const SITE = {
   },
 
   // "Currently working on" cards (2-3 is ideal)
-  // A card whose status is "Finished", "Just launched", "Launched", "Done" or "Completed" is
-  // hidden automatically, so changing the status is all it takes to take a card off.
+  // A card whose status is "Finished", "Just launched", "Launched", "Done", "Complete" or
+  // "Completed" is hidden automatically, so changing the status is all it takes to take a
+  // card off. Any other status (e.g. "Live", "In progress") keeps the card visible.
   // Optional: add  link: "https://..."  to a card to make the whole card clickable.
   now: [
     {
@@ -56,7 +57,7 @@ const SITE = {
       title: "Launching jairomora.com",
       tag: "Project",
       summary: "My new home on the web for projects, updates, and wins.",
-      body: "I built this site to keep everything I'm working on in one place - projects, milestones, and what I'm learning along the way.\n\nCheck back for updates on my capstone and the 3D Chicago model."
+      body: "I built this site to keep everything I'm working on in one place - projects, milestones, and what I'm learning along the way."
     }
   ],
 
