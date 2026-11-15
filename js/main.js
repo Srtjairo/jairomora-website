@@ -34,6 +34,9 @@
   function linkAttrs(url) {
     return /^https?:/.test(url) ? ' target="_blank" rel="noopener"' : "";
   }
+  // Hidden words for screen readers on every link that opens a new tab (sighted users see the tab open)
+  var NEW_TAB = '<span class="sr-only"> (opens in a new tab)</span>';
+  function newTabNote(url) { return /^https?:/.test(url) ? NEW_TAB : ""; }
 
   /* ---------- Profile ---------- */
   function renderProfile() {
@@ -64,12 +67,12 @@
     if (p.resume) links.push({ url: p.resume, label: "Resume", icon: ICONS.resume });
 
     function pill(l) {
-      return '<a class="social" href="' + esc(l.url) + '"' + linkAttrs(l.url) + ">" + l.icon + esc(l.label) + "</a>";
+      return '<a class="social" href="' + esc(l.url) + '"' + linkAttrs(l.url) + ">" + l.icon + esc(l.label) + newTabNote(l.url) + "</a>";
     }
     // Hero: LinkedIn and Email as pills, then the resume as the one main (filled) button at the end (no GitHub here).
     // Footer: every link as a pill.
     var hero = links.filter(function (l) { return l.url !== p.resume && l.url !== p.github; }).map(pill).join("");
-    if (p.resume) hero += '<a class="btn btn--primary" href="' + esc(p.resume) + '" target="_blank" rel="noopener">' + ICONS.resume + "Resume</a>";
+    if (p.resume) hero += '<a class="btn btn--primary" href="' + esc(p.resume) + '" target="_blank" rel="noopener">' + ICONS.resume + "Resume" + NEW_TAB + "</a>";
     $("#heroSocials").innerHTML = hero;
     $("#footerSocials").innerHTML = links.map(pill).join("");
   }
@@ -181,8 +184,8 @@
       var links = "";
       // the first link is the "main" one: the whole card opens it
       if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
-      if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub</a>";
-      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
+      if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub" + newTabNote(p.github) + "</a>";
+      if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo" + newTabNote(p.demo) + "</a>";
       return "<li>" +
         '<article class="card project">' +
           '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">' +
@@ -347,10 +350,15 @@
 
   /* ---------- Theme ---------- */
   function bindTheme() {
-    $("#themeToggle").addEventListener("click", function () {
+    // The button is a "Dark mode" switch: aria-pressed tells screen readers whether it's on
+    var btn = $("#themeToggle");
+    function sync() { btn.setAttribute("aria-pressed", String(document.documentElement.getAttribute("data-theme") === "dark")); }
+    sync();
+    btn.addEventListener("click", function () {
       var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", next);
       try { localStorage.setItem("theme", next); } catch (e) {}
+      sync();
     });
   }
 
