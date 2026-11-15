@@ -84,7 +84,8 @@ const SITE = {
     {
       title: "3D Chicago Model",
       description: "Chicago in 3D, 8 km around the Loop: downtown, 40 neighborhoods and the lakefront, built from real city data. Fly around, or switch it to night.",
-      thumbnail: "images/projects/chicago-3d.webp",
+      thumbnail: "images/projects/chicago-3d-dusk.webp",
+      video: "images/projects/chicago-3d-dusk.mp4", // optional: a short silent clip that plays when you hover over the card
       tags: ["Three.js", "JavaScript", "GIS data"],
       github: "https://github.com/Srtjairo/chicago-3d",
       demo: "https://srtjairo.github.io/chicago-3d/"

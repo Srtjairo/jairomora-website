@@ -185,7 +185,9 @@
       if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo</a>";
       return "<li>" +
         '<article class="card project">' +
-          '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy"></div>' +
+          '<div class="project__thumb"><img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">' +
+            (p.video ? '<video class="project__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="' + esc(p.video) + '"></video>' : "") +
+          "</div>" +
           '<div class="project__info">' +
             "<h3>" + esc(p.title) + "</h3>" +
             "<p>" + esc(p.description) + "</p>" +
@@ -193,6 +195,34 @@
             '<div class="project__links">' + links + "</div>" +
           "</div></article></li>";
     }).join("");
+    wireProjectVideos();
+  }
+
+  // Cards with a `video`: hovering (or keyboard focus) plays the short clip over the still; leaving
+  // stops it and shows the still again. Only where a mouse can hover, never with reduced motion,
+  // and the clip only downloads the first time it's played.
+  function wireProjectVideos() {
+    var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    Array.prototype.forEach.call(document.querySelectorAll("#projectList .project__video"), function (video) {
+      var card = video.closest(".project"), thumb = video.parentNode;
+      function play() {
+        if (!canHover.matches || reduced.matches) return;
+        if (!video.getAttribute("src")) video.src = video.getAttribute("data-src");
+        var started = video.play();
+        thumb.classList.add("is-playing");
+        if (started && started.catch) started.catch(function () { thumb.classList.remove("is-playing"); });
+      }
+      function stop() {
+        thumb.classList.remove("is-playing");
+        video.pause();
+        if (video.readyState) video.currentTime = 0;
+      }
+      card.addEventListener("mouseenter", play);
+      card.addEventListener("mouseleave", stop);
+      card.addEventListener("focusin", play);
+      card.addEventListener("focusout", function (e) { if (!card.contains(e.relatedTarget)) stop(); });
+    });
   }
 
   /* ---------- Slide viewer (projects with a `deck`) ---------- */
