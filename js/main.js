@@ -52,8 +52,11 @@
       h1.textContent = parts.length ? parts.join(" ") + " " : "";
       h1.appendChild(last);
     }
+    // index.html already loads the photo (with the release ?v=). Only swap it when data.js names a
+    // different file; the same file with another ?v= would make the browser download it twice.
     var img = $("#headshot");
-    img.src = p.headshot;
+    var file = function (u) { return String(u || "").split(/[?#]/)[0]; };
+    if (p.headshot && file(p.headshot) !== file(img.getAttribute("src"))) img.src = p.headshot;
     img.alt = "Headshot of " + p.name;
     $("#tagline").textContent = p.tagline;
     $("#bio").textContent = p.bio || "";
