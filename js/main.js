@@ -111,7 +111,7 @@
   var posts = (S.posts || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
   // A single launch note needs less space than a full archive.
   $("#timeline").classList.toggle("section--latest", posts.length === 1);
-  $("#updatesHeading").innerHTML = (posts.length === 1 ? "Latest update" : "Updates") + '<span class="h-muted">.</span>';
+  $("#updatesHeading").textContent = posts.length === 1 ? "Latest update" : "Updates";
   var activeTag = "All";
   var visibleCount = POSTS_PER_PAGE;
 
