@@ -87,7 +87,7 @@ const SITE = {
       thumbnail: "images/projects/chicago-3d-dusk.webp",
       video: "images/projects/chicago-3d-dusk.mp4", // optional: a short silent looping clip that plays when you hover over the card
       tags: ["Three.js", "JavaScript", "GIS data"],
-      github: "https://github.com/Srtjairo/chicago-3d",
+      github: "", // no GitHub button on this card (the Live demo is the point)
       demo: "https://srtjairo.github.io/chicago-3d/"
     }
   ]
