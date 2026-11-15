@@ -17,7 +17,7 @@ const SITE = {
     name: "Jairo A Mora",
     tagline: "Finance graduate · Researcher · Builder",
     bio: "I'm a Chicago-based finance graduate from UIUC's Gies College of Business (class of 2026) who swing trades options and builds tools for investment research. Explore my SEC research app, software-company capstone, and interactive 3D model of Chicago below.",
-    headshot: "images/headshot.webp?v=3", // bump ?v= when the photo changes (browsers cache images 4h).
+    headshot: "images/headshot.webp", // same file as in index.html; /ship's ?v= stamp there refreshes it. Point to a new file name to swap the photo.
     email: "inbox@jairomora.com", // forwards to Gmail via Cloudflare Email Routing
     github: "https://github.com/Srtjairo",
     linkedin: "https://www.linkedin.com/in/jairo-mor",
