@@ -448,10 +448,6 @@ a.card { display: block; color: inherit; text-decoration: none; }
   .project__links .btn { min-height: 44px; } /* full-size tap target on phones */
 }
 
-/* Project previews: crop the original screenshot without changing its source. */
-.project__thumb--research { background: #f4f2e8; }
-.project__thumb--research img { position: absolute; max-width: none; width: 170%; height: auto; aspect-ratio: 8 / 5; left: -26%; top: 50%; transform: translateY(-70.25%); clip-path: inset(40.5% 0 0 0); }
-
 /* One update is a compact note; a growing archive retains the timeline layout. */
 .section--latest { padding-top: 44px; padding-bottom: 48px; }
 .section--latest .section__head { margin-bottom: 22px; }
