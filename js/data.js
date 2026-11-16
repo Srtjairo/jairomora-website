@@ -66,9 +66,9 @@ const SITE = {
     {
       title: "Company Research",
       description: "Public-company financials from SEC filings, with source-linked numbers and Excel exports for faster research.",
-      thumbnail: "images/projects/company-research.webp?v=2", // Apple results in dark mode; the clip's first frame (bump ?v= when it changes)
-      preview: "deck", // same tablet fit as the capstone: show the whole dark frame instead of cropping off the Apple logo and numbers
-      video: "images/projects/company-research.mp4?v=2", // hover clip: Apple results -> search "Apple" -> bull loading bar -> chart -> Operating income, then loops
+      thumbnail: "images/projects/company-research.webp?v=3", // the app's home page (search bar) in dark mode; the clip's first frame (bump ?v= when it changes)
+      preview: "deck", // same tablet fit as the capstone: show the whole dark frame instead of cropping off its edges
+      video: "images/projects/company-research.mp4?v=3", // hover clip: home page -> search "Apple" -> bull loading bar -> results -> Operating income chart -> home, then loops
       // Remake both: python tickets/research/scripts/cr_clip_capture.py, then cr_clip_build.py (ticket 105)
       tags: ["SEC filings", "Excel", "JavaScript"],
       github: "", // repo is private (empty = no GitHub button)
