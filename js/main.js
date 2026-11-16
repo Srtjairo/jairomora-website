@@ -192,9 +192,7 @@
       if (p.deck) links += '<button type="button" class="btn btn--dark project__main" data-deck="' + esc(p.id || i) + '">' + ICONS.slides + "View slides</button>";
       if (p.github) links += '<a class="btn btn--dark' + (p.deck ? "" : " project__main") + '" href="' + esc(p.github) + '"' + linkAttrs(p.github) + ">" + ICONS.github + "View on GitHub" + newTabNote(p.github) + "</a>";
       if (p.demo) links += '<a class="btn btn--ghost' + (p.github || p.deck ? "" : " project__main") + '" href="' + esc(p.demo) + '"' + linkAttrs(p.demo) + ">" + ICONS.external + "Live demo" + newTabNote(p.demo) + "</a>";
-      var preview = p.cover
-        ? '<div class="project__cover"><span class="project__cover-label">' + esc(p.cover.label) + '</span><span class="project__cover-title">' + esc(p.cover.title) + '</span><span class="project__cover-detail">' + esc(p.cover.detail) + '</span></div>'
-        : '<img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">';
+      var preview = '<img src="' + esc(p.thumbnail) + '" alt="' + esc(p.title) + ' screenshot" loading="lazy">';
       return "<li>" +
         '<article class="card project">' +
           '<div class="project__thumb' + (p.preview === "financials" ? ' project__thumb--research' : p.preview === "deck" ? ' project__thumb--deck' : '') + '">' + preview +
