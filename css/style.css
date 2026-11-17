@@ -163,9 +163,12 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 }
 .hero__name { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.05; }
 /* Pronunciation under the name: a quiet caption, not a second tagline */
-.hero__say { margin: 8px 0 0; font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text-muted); }
+/* Tucked up under the name (the h1's line box already leaves room below the letters) so it groups with the name,
+   with the larger gap before the tagline */
+.hero__say { margin: 0; font-size: 0.95rem; line-height: 1.3; letter-spacing: 0.04em; color: var(--text-muted); }
 .hero__say[hidden] { display: none; }
-.hero__tagline { margin: 12px 0 0; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--text-on-glow); font-weight: 500; }
+.hero__say + .hero__tagline { margin-top: 18px; }
+.hero__tagline { margin: 14px 0 0; font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--text-on-glow); font-weight: 500; }
 .hero__bio { margin: 16px auto 0; max-width: 54ch; color: var(--text-on-glow); text-wrap: pretty; }
 .hero .socials { justify-content: center; }
 /* Computer/tablet: photo on the left (about 2x the old 184px), text beside it, left-aligned */
