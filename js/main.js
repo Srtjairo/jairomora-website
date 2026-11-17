@@ -52,6 +52,16 @@
       h1.textContent = parts.length ? parts.join(" ") + " " : "";
       h1.appendChild(last);
     }
+    // Pronunciation under the name: shown as "HI-roh · MOR-ah", read aloud as "Pronounced HI-roh MOR-ah"
+    var say = $("#pronounce");
+    if (say) {
+      var said = String(p.pronunciation || "").trim();
+      say.hidden = !said;
+      if (said) {
+        say.children[0].textContent = "Pronounced " + said.replace(/\s*·\s*/g, " ");
+        say.children[1].textContent = said;
+      }
+    }
     // index.html already loads the photo (with the release ?v=). Only swap it when data.js names a
     // different file; the same file with another ?v= would make the browser download it twice.
     var img = $("#headshot");
