@@ -107,7 +107,7 @@ h3 { font-size: 1.1rem; letter-spacing: -0.02em; }
 .nav__inner.container { max-width: none; } /* full-width bar: logo sits in the top-left corner, menu and theme button on the right */
 .nav__brand { font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-right: auto; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; }
 .nav__brand:hover { text-decoration: none; }
-/* Gold J logo (same art as the tab icon); 120px-tall file shown at 40px so it stays sharp */
+/* Indigo-violet J logo (same art as the tab icon; the gold originals stay in images/ for comparison); 120px-tall file shown at 40px so it stays sharp */
 .nav__brand img { display: block; height: 40px; width: auto; transition: transform var(--dur) var(--ease-out); }
 .nav__brand:hover img { transform: scale(1.06); }
 .nav__links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
