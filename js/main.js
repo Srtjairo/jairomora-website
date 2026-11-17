@@ -52,6 +52,21 @@
       h1.textContent = parts.length ? parts.join(" ") + " " : "";
       h1.appendChild(last);
     }
+    // Pronunciation under the name: shown as "HI-roh · MOR-ah", read aloud as "Pronounced HI-roh MOR-ah"
+    var say = $("#pronounce");
+    if (say) {
+      var said = String(p.pronunciation || "").trim();
+      say.hidden = !said;
+      if (said) {
+        // Build both spans here so the rest of renderProfile never depends on index.html's copy
+        var heard = document.createElement("span"), seen = document.createElement("span");
+        heard.className = "sr-only";
+        heard.textContent = "Pronounced " + said.replace(/\s*·\s*/g, " ");
+        seen.setAttribute("aria-hidden", "true");
+        seen.textContent = said;
+        say.replaceChildren(heard, seen);
+      }
+    }
     // index.html already loads the photo (with the release ?v=). Only swap it when data.js names a
     // different file; the same file with another ?v= would make the browser download it twice.
     var img = $("#headshot");
