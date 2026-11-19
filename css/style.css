@@ -404,8 +404,8 @@ a.card { display: block; color: inherit; text-decoration: none; }
 .btn--ghost:hover { box-shadow: var(--shadow-ring-strong), 0 10px 20px -12px rgba(14, 23, 38, .25); }
 
 /* ============ Projects (all shown, stacked) ============ */
-/* Desktop: three compact cards side by side. Tablet: one per row, picture on the left. Phone: stacked. */
-.project-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Desktop: four cards in a 2 x 2 grid (so none sits alone on a row). Tablet: one per row, picture on the left. Phone: stacked. */
+.project-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .project {
   display: flex; flex-direction: column; overflow: hidden; padding: 0;
   height: 100%; box-shadow: var(--shadow-float);
