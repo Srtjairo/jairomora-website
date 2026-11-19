@@ -65,6 +65,17 @@ const SITE = {
   // Projects (all shown as cards). Keep each description to about 150 characters so the cards stay compact.
   projects: [
     {
+      title: "All My Reps",
+      description: "Type any Illinois address to see everyone who represents you, with votes, campaign money and contacts from official sources.",
+      thumbnail: "images/projects/all-my-reps.webp", // the Illinois start screen in dark mode; the clip's first frame (bump ?v= when it changes)
+      preview: "deck", // tablet widths show the whole frame (the side panel would otherwise be cut off)
+      video: "images/projects/all-my-reps.mp4", // hover clip: Illinois map -> type an address -> fly to Chicago with your officials -> alderperson's profile and votes, then loops
+      // Remake both: python tickets/research/scripts/amr_clip_capture.py, then amr_clip_build.py (ticket 131)
+      tags: ["Civic data", "Maps", "JavaScript"],
+      github: "",
+      demo: "https://allmyreps.org"
+    },
+    {
       title: "Company Research",
       description: "Public-company financials from SEC filings, with source-linked numbers and Excel exports for faster research.",
       thumbnail: "images/projects/company-research.webp?v=3", // the app's home page (search bar) in dark mode; the clip's first frame (bump ?v= when it changes)
