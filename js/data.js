@@ -62,11 +62,11 @@ const SITE = {
     }
   ],
 
-  // Projects (all shown as cards). Keep each description to about 150 characters so the cards stay compact.
+  // Projects (all shown as cards). Keep each description to about 95 characters: four cards share one row on desktop.
   projects: [
     {
       title: "All My Reps",
-      description: "Type any Illinois address to see everyone who represents you, with votes, campaign money and contacts from official sources.",
+      description: "Type any Illinois address to see who represents you, with votes, campaign money and contacts.",
       thumbnail: "images/projects/all-my-reps.webp", // the Illinois start screen in dark mode; the clip's first frame (bump ?v= when it changes)
       preview: "deck", // tablet widths show the whole frame (the side panel would otherwise be cut off)
       video: "images/projects/all-my-reps.mp4", // hover clip: Illinois map -> type an address -> fly to Chicago with your officials -> alderperson's profile and votes, then loops
@@ -77,7 +77,7 @@ const SITE = {
     },
     {
       title: "Company Research",
-      description: "Public-company financials from SEC filings, with source-linked numbers and Excel exports for faster research.",
+      description: "Public-company financials from SEC filings, with source-linked numbers and Excel exports.",
       thumbnail: "images/projects/company-research.webp?v=3", // the app's home page (search bar) in dark mode; the clip's first frame (bump ?v= when it changes)
       preview: "deck", // same tablet fit as the capstone: show the whole dark frame instead of cropping off its edges
       video: "images/projects/company-research.mp4?v=3", // hover clip: home page -> search "Apple" -> bull loading bar -> results -> Operating income chart -> home, then loops
@@ -89,7 +89,7 @@ const SITE = {
     {
       id: "capstone",
       title: "OnDean Capstone",
-      description: "Five software companies compared on retention, quality, and AI exposure. My OnDean Fellows capstone call: Snowflake.",
+      description: "Five software companies compared on retention, quality and AI exposure. My call: Snowflake.",
       thumbnail: "images/projects/ondean-capstone.webp", // the title slide, framed; the clip's first frame
       preview: "deck", // tablet widths show the whole framed slide (dark band above and below) instead of cropping its sides
       video: "images/projects/ondean-capstone.mp4", // hover clip: title -> five companies -> retention -> AI exposure -> the call, then loops
@@ -101,7 +101,7 @@ const SITE = {
     },
     {
       title: "3D Chicago Model",
-      description: "An interactive city model built from real GIS data: 40 neighborhoods, the lakefront, and a day-to-night view of Chicago.",
+      description: "An interactive city model from real GIS data: 40 neighborhoods, the lakefront, day to night.",
       thumbnail: "images/projects/chicago-3d-dusk.webp",
       video: "images/projects/chicago-3d-dusk.mp4", // optional: a short silent looping clip that plays when you hover over the card
       tags: ["Three.js", "JavaScript", "GIS data"],
