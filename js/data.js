@@ -54,6 +54,15 @@ const SITE = {
   // "Achievement", "Project", "Learning", "Life"
   posts: [
     {
+      date: "2026-11-20",
+      title: "All My Reps: from Chicago to all of America",
+      tag: "Project",
+      summary: "I launched allmyreps.org: type in an address and see everyone who represents you. It started as a Chicago-only site and now answers for every state.",
+      // Facts checked 2026-11-20 against the live site (allmyreps.org, js/states.js on main): first release Nov 16 (Chicago),
+      // all of Illinois Nov 17, 15 full states, the other 35 states and DC with members of Congress. Update the numbers as states are added.
+      body: "All My Reps went live on November 16 as a Chicago-only site. Enter an address and it shows your alderperson, state lawmakers and members of Congress, with how they voted and who funds them, all from official public sources. A day later it covered every address in Illinois.\n\nSince then I've been taking it national. Fifteen states, including New York, California, Texas and Florida, now show state lawmakers, the governor and statewide officials too, plus the city councils of Chicago, New York City and Los Angeles. Every other state and Washington, DC shows its members of Congress.\n\nNext up: bringing the remaining states to the same level, largest first."
+    },
+    {
       date: "2026-11-11",
       title: "Launching jairomora.com",
       tag: "Project",
