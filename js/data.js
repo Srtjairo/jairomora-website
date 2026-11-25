@@ -75,10 +75,11 @@ const SITE = {
   projects: [
     {
       title: "All My Reps",
-      description: "Type any Illinois address to see who represents you, with votes, campaign money and contacts.",
-      thumbnail: "images/projects/all-my-reps.webp", // the Illinois start screen in dark mode; the clip's first frame (bump ?v= when it changes)
+      description: "Type any US address to see who represents you, with how they voted, campaign money and contacts.",
+      // Checked 2026-11-25 against allmyreps.org: any US address; 15 full states, Congress only elsewhere, so don't say "every official"
+      thumbnail: "images/projects/all-my-reps.webp?v=2", // the national start page ("Everyone who represents you...") in dark mode; the clip's first frame (bump ?v= when it changes)
       preview: "deck", // tablet widths show the whole frame (the side panel would otherwise be cut off)
-      video: "images/projects/all-my-reps.mp4", // hover clip: Illinois map -> type an address -> fly to Chicago with your officials -> alderperson's profile and votes, then loops
+      video: "images/projects/all-my-reps.mp4?v=2", // hover clip: national start page -> type an address -> map of Chicago with your officials -> alderperson's profile and votes, then loops
       // Remake both: python tickets/research/scripts/amr_clip_capture.py, then amr_clip_build.py (ticket 131)
       tags: ["Civic data", "Maps", "JavaScript"],
       github: "",
